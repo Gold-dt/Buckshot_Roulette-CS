@@ -7,6 +7,7 @@ namespace Game
     {
         static void Main(string[] args)
         {
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
 
             List<string> test = new List<string>()
             {
@@ -14,16 +15,17 @@ namespace Game
             };
 
             Engine engine = new(test);
-            Functions functions = new();
+            MainMenu menu;
             engine.ProfileName = "Gold_dt";
 
+            string[] MainMenu = { "Name Change","Load Game","New Game" };
 
-            Console.OutputEncoding = System.Text.Encoding.UTF8;
+            menu = new(MainMenu);
+            //menu.Menu();
 
 
-            functions.DisplayIntro(engine.Tittle, "\t\t");
-            
-            
+
+
 
 
 
