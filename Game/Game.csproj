@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+	  <Authors>Gold_dt</Authors>
+	  <Company>MySelf ;)</Company>
+	  <Product>Your Product Name</Product>
+	  <Copyright>Copyright Golddt© </Copyright>
+	  <Description>You can use,copy,edit what you want just for the credits mantion me "Gold_dt" thx and good work</Description>
+	  
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GameLib\GameLib.csproj" />
+  </ItemGroup>
+
+</Project>
