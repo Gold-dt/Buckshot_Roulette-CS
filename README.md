@@ -1,1 +1,1 @@
-# Fun little game isnpired by the BuckShot steam game
+# Fun little game inspired by the BuckShot steam game
