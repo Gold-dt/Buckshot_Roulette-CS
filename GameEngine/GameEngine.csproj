@@ -6,4 +6,11 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+	<PropertyGroup>
+		<Authors>Gold_dt</Authors>
+		<Copyright>Gold_dt</Copyright>
+		<Company>Myself ;)</Company>
+		<Description>You can use modify anything you want just mention me "Gold_dt" if you use this project thanks</Description>
+	</PropertyGroup>
+
 </Project>
