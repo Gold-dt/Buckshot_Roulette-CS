@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35312.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuckShot-Console", "BuckShot-Console\BuckShot-Console.csproj", "{2C1357F4-B6DB-4D5A-B787-D2828BC08F62}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameEngine", "GameEngine\GameEngine.csproj", "{DF087013-49DC-4304-BF10-991F4842F0AE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2C1357F4-B6DB-4D5A-B787-D2828BC08F62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C1357F4-B6DB-4D5A-B787-D2828BC08F62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C1357F4-B6DB-4D5A-B787-D2828BC08F62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C1357F4-B6DB-4D5A-B787-D2828BC08F62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF087013-49DC-4304-BF10-991F4842F0AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF087013-49DC-4304-BF10-991F4842F0AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF087013-49DC-4304-BF10-991F4842F0AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF087013-49DC-4304-BF10-991F4842F0AE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D6EE69C1-1F95-49D0-9654-4466EAF689F6}
+	EndGlobalSection
+EndGlobal
