@@ -66,6 +66,11 @@ namespace BuckShot
             
             
             NameChange(out string Player_Name);
+            #region Fancy text
+            //TextAnim("Are your ready?");
+            //Thread.Sleep(1000);
+            //Console.Clear();
+            #endregion
             game = new(Player_Name, MaxReck, MaxRound,MaxHealth,MinHealth,GameType);
             game.Round = 1;
             game.NextRound();
