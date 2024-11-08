@@ -7,18 +7,62 @@ namespace BuckShot
     class Program
     {
         GameWork game;
-        public string Name { get; set; }
+        public int MaxReck => 8;
+        public int[] NameLentgh => [2, 6];
         static void Main()
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
             Program program = new Program();
-            
-            program.Menu(["Start", "language", "ChangeName"]);
+            program.Menu(["Start", "language"], [program.GameStart]);
             
             
         }
 
-        void Menu(string[] menupont)
+        void Test()
+        {
+
+
+            Random r = new Random();
+            while (true)
+            {
+
+                int currentshels = r.Next(2, MaxReck);
+                int aktív = r.Next(1, currentshels);
+                int blank = currentshels - aktív;
+                //Console.WriteLine($"{aktív}/{currentshels}");
+
+                Console.Write($"\nÖsszes: {currentshels}");
+                if (aktív == 0)
+                {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                }
+                Console.Write($" Aktív: {aktív}");
+                if (blank == 0)
+                {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                }
+                Console.Write($" Üres: {blank}");
+                Console.ResetColor();
+
+                Console.ReadLine();
+            }
+        }
+
+        void GameStart()
+        {
+            NameChange(out string Player_Name);
+            game = new(Player_Name, MaxReck);
+            game.NextRound();
+        }
+        void Menu(string[] menupont, Action[] menuoptions)
         {
             int index = 0;
             
@@ -40,31 +84,37 @@ namespace BuckShot
                 ConsoleKeyInfo gomb = Console.ReadKey();
 
 
-                if(gomb.Key == ConsoleKey.S)
+                if(gomb.Key == ConsoleKey.S || gomb.Key == ConsoleKey.DownArrow)
                 {
                     if(index != menupont.Length-1)
                     {
                         index++;
                     }
                 }
-                else if(gomb.Key == ConsoleKey.W)
+                else if(gomb.Key == ConsoleKey.Enter)
+                {
+                    menuoptions[index].Invoke();
+                    run = false;
+                }
+                else if(gomb.Key == ConsoleKey.W || gomb.Key == ConsoleKey.UpArrow)
                 {
                     if(index != 0)
                     {
                         index--;
                     }
                 }
+                
             }
 
             //NameChange(out string name, [2,6]);
             //TextAnim($"Are you ready?");
         }
 
-        void NameChange(out string name,int[] length)
+        void NameChange(out string PlayerName)
         {
-            name = "";
+            int[] length = NameLentgh.ToArray();
             bool run = true;
-
+            PlayerName = "";
             string valid;
             while (run)
             {
@@ -75,8 +125,8 @@ namespace BuckShot
                 if (Name.Length >= length[0] && Name.Length <= length[1] && !Name.Any(char.IsAsciiDigit))
                 {
                     run = false;
-                    name = Name;
-                    this.Name = name;
+                    
+                    PlayerName = Name;
                 }
                 valid = !run ? "🟢" : "🔴";
                 Console.WriteLine($"Status: {valid}");
