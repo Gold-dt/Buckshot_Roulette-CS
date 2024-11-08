@@ -7,22 +7,57 @@ namespace BuckShot
     class Program
     {
         GameWork game;
-
+        public string Name { get; set; }
         static void Main()
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
             Program program = new Program();
-            program.Menu();
+            
+            program.Menu(["Start", "language", "ChangeName"]);
             
             
         }
 
-        void Menu()
+        void Menu(string[] menupont)
         {
-            Console.WriteLine("Game Menu");
-            Console.WriteLine("1 - Start");
-            NameChange(out string name, [2,6]);
-            TextAnim($"Are you ready?");
+            int index = 0;
+            
+            
+            bool run = true;
+            while (run)
+            {
+                Console.Clear();
+                Console.WriteLine($"Game Menu {index} / {menupont.Length}");
+                for (int i = 0; i < menupont.Length; i++)
+                {
+                    if(index == i)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                    }
+                    Console.WriteLine($"{i + 1} - {menupont[i]}");
+                    Console.ResetColor();
+                }
+                ConsoleKeyInfo gomb = Console.ReadKey();
+
+
+                if(gomb.Key == ConsoleKey.S)
+                {
+                    if(index != menupont.Length-1)
+                    {
+                        index++;
+                    }
+                }
+                else if(gomb.Key == ConsoleKey.W)
+                {
+                    if(index != 0)
+                    {
+                        index--;
+                    }
+                }
+            }
+
+            //NameChange(out string name, [2,6]);
+            //TextAnim($"Are you ready?");
         }
 
         void NameChange(out string name,int[] length)
@@ -41,6 +76,7 @@ namespace BuckShot
                 {
                     run = false;
                     name = Name;
+                    this.Name = name;
                 }
                 valid = !run ? "🟢" : "🔴";
                 Console.WriteLine($"Status: {valid}");
@@ -62,13 +98,11 @@ namespace BuckShot
                     }
                     Console.WriteLine("         ");
         
-                    // Visszalépünk az előző sor elejére
                     Console.SetCursorPosition(0, Console.CursorTop - 1);
                     
-                    // Üres karakterekkel írjuk felül a sort
                     Console.Write(new string(' ', Console.WindowWidth));
                     
-                    // Visszalépünk a sor elejére, így a következő írás itt     kezdődik
+                    
                     Console.SetCursorPosition(0, Console.CursorTop - 1);
 
                     if (run == true)
@@ -94,7 +128,7 @@ namespace BuckShot
             foreach (var item in text)
             {
                 Console.Write(item);
-                Thread.Sleep(200);
+                Thread.Sleep(100);
             }
             Console.WriteLine();
         }
