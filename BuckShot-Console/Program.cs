@@ -7,13 +7,18 @@ namespace BuckShot
     class Program
     {
         GameWork game;
-        public int MaxReck => 8;
-        public int[] NameLentgh => [2, 6];
+        public int MaxReck => 8;//Max töltény amit ki lehet osztani
+        public int MaxRound => 3;//Max körök
+        public int MinHealth => 2;//Min életerő
+        public int MaxHealth => 5;//Max életerő
+        public int[] NameLentgh => [2, 6];//Név karakter rendszer
+        public int GameType => 0;// 0 : Default | 1 : Duppla vagy semmi
         static void Main()
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
             Program program = new Program();
             program.Menu(["Start", "language"], [program.GameStart]);
+            
             
             
         }
@@ -58,10 +63,22 @@ namespace BuckShot
 
         void GameStart()
         {
+            
+            
             NameChange(out string Player_Name);
-            game = new(Player_Name, MaxReck);
+            game = new(Player_Name, MaxReck, MaxRound,MaxHealth,MinHealth,GameType);
+            game.Round = 1;
             game.NextRound();
+            Console.WriteLine(game);
+            Console.ReadLine();
+            
         }
+
+        void Match()
+        {
+
+        }
+
         void Menu(string[] menupont, Action[] menuoptions)
         {
             int index = 0;
