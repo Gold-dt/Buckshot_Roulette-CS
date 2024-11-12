@@ -7,6 +7,8 @@ namespace BuckShot
     class Program
     {
         GameWork game;
+        Dealer dealer;
+        Player player;
         public int MaxReck => 8;//Max töltény amit ki lehet osztani
         public int MaxRound => 3;//Max körök
         public int MinHealth => 2;//Min életerő
@@ -23,65 +25,75 @@ namespace BuckShot
             
         }
 
-        void Test()
-        {
-
-
-            Random r = new Random();
-            while (true)
-            {
-
-                int currentshels = r.Next(2, MaxReck);
-                int aktív = r.Next(1, currentshels);
-                int blank = currentshels - aktív;
-                //Console.WriteLine($"{aktív}/{currentshels}");
-
-                Console.Write($"\nÖsszes: {currentshels}");
-                if (aktív == 0)
-                {
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                }
-                else
-                {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                }
-                Console.Write($" Aktív: {aktív}");
-                if (blank == 0)
-                {
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                }
-                else
-                {
-                    Console.ForegroundColor = ConsoleColor.Cyan;
-                }
-                Console.Write($" Üres: {blank}");
-                Console.ResetColor();
-
-                Console.ReadLine();
-            }
-        }
-
         void GameStart()
         {
             
             
             NameChange(out string Player_Name);
-            #region Fancy text
-            //TextAnim("Are your ready?");
-            //Thread.Sleep(1000);
-            //Console.Clear();
-            #endregion
             game = new(Player_Name, MaxReck, MaxRound,MaxHealth,MinHealth,GameType);
-            game.Round = 1;
-            game.NextRound();
-            Console.WriteLine(game);
-            Console.ReadLine();
+            game.Round = 0;
+            while(game.Round < MaxRound)
+            {
+                Console.Clear();
+                Match();
+            }
             
         }
 
         void Match()
         {
-
+            bool Current = false;
+            string CurrentOne = Current == false? "player":"dealer";
+            game.NextMatch();
+            Console.WriteLine(game);
+            while (game.LowestHealth != 0)
+            {
+                if(game.Shells == 0)
+                {
+                    game.NextRound();
+                }
+                else
+                {
+                    bool Done = false;
+                    while (Done != true)
+                    {
+                        Console.Write("Akció:");
+                        ConsoleKeyInfo gomb = Console.ReadKey();
+                        Console.WriteLine("");
+                        if(gomb.Key == ConsoleKey.Q)//Támad
+                        {
+                            game.Shoot(CurrentOne,out int type);
+                            if(type == 1)
+                            {
+                                Console.WriteLine("Aktív");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Üres");
+                            }
+                            Done = true;
+                        }
+                        else if(gomb.Key == ConsoleKey.E)//Magamat
+                        {
+                            game.MeShoot(CurrentOne, out int type);
+                            if (type == 1)
+                            {
+                                Console.WriteLine("Aktív");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Üres");
+                            }
+                            Done = true;
+                        }
+                        Console.WriteLine("");
+                    }
+                    Current = !Current;
+                    Console.WriteLine(game);
+                    Console.ReadLine();
+                }
+            }
+            game.Round++;
         }
 
         void Menu(string[] menupont, Action[] menuoptions)
@@ -124,12 +136,8 @@ namespace BuckShot
                     {
                         index--;
                     }
-                }
-                
+                }   
             }
-
-            //NameChange(out string name, [2,6]);
-            //TextAnim($"Are you ready?");
         }
 
         void NameChange(out string PlayerName)

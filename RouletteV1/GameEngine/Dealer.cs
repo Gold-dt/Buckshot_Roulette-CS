@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace GameEngine
 {
-    public class Dealer
+    public class Dealer : ICharacterStats
     {
         public int Health { get; set; }
-        public string[] items { get; set; } = { };
+        public List<string> Items { get; set; } = new List<string>();
 
         public Dealer(int health)
         {
