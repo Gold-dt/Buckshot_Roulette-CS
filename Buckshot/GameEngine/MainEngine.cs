@@ -10,6 +10,9 @@ namespace GameEngine
         public int Rounds => 3;
         public int Round => 1;
 
+        public string Last_P_Shot;
+        public string Last_D_Shot;
+
         Player player;
         Dealer dealer;
         private int _lowest;
@@ -32,7 +35,7 @@ namespace GameEngine
         public void NewShells()
         {
             Shells.Clear();
-            string[] shelltypes = ["blank","live"];
+            string[] shelltypes = ["Blank","Live"];
             Random random = new Random();
             for (int i = 0; i < random.Next(3,9); i++)
             {
@@ -40,7 +43,65 @@ namespace GameEngine
                 Shells.Add(shell);
             }
         }
+        public void DealerRound(string actor,out string ChosedAction)
+        {
+            Random r = new Random();
+            
+            bool logic = r.Next(0,100) < 60;
 
+            if(logic == true)
+            {
+                if(Shells.Contains("Live") == false && Shells.Count > 2)
+                {
+                    MeShoot(actor);
+                    ChosedAction = "MeShoot";
+                }
+                else if(Shells.Count == 1)
+                {
+                    if(Shells.First() == "Live")
+                    {
+                        Shoot(actor);
+                        ChosedAction = "Shoot";
+                    }
+                    else
+                    {
+                        MeShoot(actor);
+                        ChosedAction = "MeShoot";
+                    }
+                }
+                else
+                {
+                    int actions = r.Next(0, 2);
+                    if (actions == 0)
+                    {
+                        Shoot(actor);
+                        ChosedAction = "Shoot";
+                    }
+                    else
+                    {
+                        MeShoot(actor);
+                        ChosedAction = "MeShoot";
+                    }
+                }
+            }
+            else
+            {
+                int actions = r.Next(0, 2);
+                if (actions == 0)
+                {
+                    Shoot(actor);
+                    ChosedAction = "Shoot";
+                }
+                else
+                {
+                    MeShoot(actor);
+                    ChosedAction = "MeShoot";
+                }
+            }
+            
+            
+
+        }
 
         public void Shoot(string actor)
         {
@@ -48,8 +109,15 @@ namespace GameEngine
 
 
             validate(character, out string current);
-            Console.WriteLine("\t" + current);
-
+            
+            if (actor == "player")
+            {
+                Last_P_Shot = current;
+            }
+            else
+            {
+                Last_D_Shot = current;
+            }
             UpdateLowestEnergy();
         }
 
@@ -58,22 +126,29 @@ namespace GameEngine
             ICharacter character = actor == "player" ? player : dealer; // Reversed (if actor = player => dealer)
 
             validate(character,out string current);
-            Console.WriteLine("\t"+current);
             
+            if(actor == "player")
+            {
+                Last_P_Shot = current;
+            }
+            else
+            {
+                Last_D_Shot= current;
+            }
             UpdateLowestEnergy();
         }
 
         public void validate(ICharacter character,out string current)
         {
             current = Shells.First();
-            if (current == "live")
+            if (current == "Live")
             {
                 if (character.Energy - 1 >= 0)
                 {
                     character.Energy--;
                 }
             }
-            else if(current == "blank")
+            else if(current == "Blank")
             {
                 //no content
             }
