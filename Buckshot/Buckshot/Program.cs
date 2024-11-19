@@ -7,25 +7,16 @@ namespace Buckshot
     {
         public string Name = "Gold";
 
-        public bool Devkit = false;
+        public bool Devkit = true;
         static void Main(string[] args)
         {
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
             Program program = new Program();
             MainEngine game = new("Gold", 5);
             
             program.MainGame(game);
             //program.Test();
         }
-
-
-
-
-        
-
-
-
-
-
 
         public void DealerActionED(string highlight)
         {
@@ -100,24 +91,68 @@ namespace Buckshot
 
             }
 
-            
+            string logo = "██████╗ ██╗   ██╗ ██████╗██╗  ██╗███████╗██╗  ██╗ ██████╗ ████████╗\r\n██╔══██╗██║   ██║██╔════╝██║ ██╔╝██╔════╝██║  ██║██╔═══██╗╚══██╔══╝\r\n██████╔╝██║   ██║██║     █████╔╝ ███████╗███████║██║   ██║   ██║   \r\n██╔══██╗██║   ██║██║     ██╔═██╗ ╚════██║██╔══██║██║   ██║   ██║   \r\n██████╔╝╚██████╔╝╚██████╗██║  ██╗███████║██║  ██║╚██████╔╝   ██║   \r\n╚═════╝  ╚═════╝  ╚═════╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝ ╚═════╝    ╚═╝   ";
 
-            void Displyer()
+            void Displyer(string tabb)
             {
+                Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.Write(tabb); // Kezdő tabulátor
+                for (int i = 0; i < logo.Length; i++)
+                {
+                    if (logo[i] == '\n') // Új sor karaktert talál
+                    {
+                        Console.Write($"\n{tabb}"); // Új sorba lép, majd új tabulátorokat ad
+                    }
+                    else
+                    {
+                        Console.Write(logo[i]); // A karaktert kiírja, ha nem új sor
+                    }
+                }
+                string tab = "\t\t\t\t\t";
+                Console.ResetColor();
+                Console.WriteLine("\n");
+                Console.WriteLine($"{tab}╭─────────────────────────────────╮");
+                Console.Write($"{tab}│  ");
                 Console.Write($"{Name}\t\t\t{Name}: ");
 
                 EnergyValid("player");
-                Console.Write($"{game.Energys("player")}\n");
+                Console.Write($"{game.Energys("player")}");
                 Console.ResetColor();
-                Console.Write($"Dealer\t\t\tDealer: ");
+                Console.Write("   │\n");
+                Console.Write($"{tab}│  ");
+                Console.Write($"Dealer\t\tDealer: ");
                 EnergyValid("dealer");
-                Console.Write($"{game.Energys("dealer")}\n");
+                Console.Write($"{game.Energys("dealer")}");
                 Console.ResetColor();
+                Console.Write(" │");
+                Console.WriteLine($"\n{tab}╰─────────────────────────────────╯");
                 if (Devkit == true)
                 {
-
+                    
+                    Console.Write($"\t{tab} Lowest Energy: ");
+                    int Energy = game.LowestEnergy();
+                    if (Energy > 3)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                    }
+                    else if (Energy == 3)
+                    {
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    }
+                    else if (Energy == 2)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                    }
+                    Console.Write($"{game.LowestEnergy()}\n");
+                    Console.ResetColor();
+                    
                     Console.ForegroundColor= ConsoleColor.DarkYellow;
-                    Console.Write($"Shells ({game.Shells.Count}): ");
+                    Console.Write($"\n{tab}Shells ({game.Shells.Count}): ");
                     for (int i = 0; i < game.Shells.Count; i++)
                     {
                         string item = game.Shells[i];
@@ -143,6 +178,11 @@ namespace Buckshot
                     Console.WriteLine();
                     Console.ResetColor();
                 }
+                else
+                {
+                    Console.Write(" │\n");
+                    Console.WriteLine("╰─────────────────────────────────╯");
+                }
             }
 
 
@@ -161,27 +201,42 @@ namespace Buckshot
                         game.NewShells();
                     }
                     bool run = true;
-                    Displyer();
+                    Displyer("\t\t\t");
                     string actor = Current == true ? "player" : "dealer";
                     int indexer = 0;
                     while (run)
                     {
                         if (actor == "player")
                         {
-
                             string[] choose = { "Dealer", "Self" };
-                            
+                            int maxWidth = choose.Max(item => item.Length) + 4;
+
+                            // Felső szegély
+                            Console.WriteLine("╭" + new string('─', maxWidth - 2) + "╮");
+
+                            // Lista elemei szegéllyel
                             for (int i = 0; i < choose.Length; i++)
                             {
-                                if (i == indexer)
+                                string line = $"│ {choose[i].PadRight(maxWidth - 4)} │";
+                                if (i == indexer) // Ha ez a kiemelt elem
                                 {
                                     Console.ForegroundColor = ConsoleColor.Magenta;
                                 }
-                                Console.WriteLine(choose[i]);
+                                Console.WriteLine(line);
                                 Console.ResetColor();
                             }
+
+                            // Alsó szegély
+                            Console.WriteLine("╰" + new string('─', maxWidth - 2) + "╯");
+
+                            // Billentyű olvasása
                             ConsoleKeyInfo gomb = Console.ReadKey(true);
-                            Console.SetCursorPosition(0, Console.CursorTop - 2);
+
+                            // Kimenet törlése
+                            Console.SetCursorPosition(0, Console.CursorTop - 4);
+                            
+
+                            // Navigációs logika
                             if (gomb.Key == ConsoleKey.DownArrow)
                             {
                                 if (indexer + 1 != choose.Length)
@@ -214,27 +269,8 @@ namespace Buckshot
                                     run = false;
                                 }
                             }
-                            
-
-                            //Console.Write($"Q Dealer | E  Self ");
-                            //ConsoleKeyInfo gomb = Console.ReadKey(true);
-                            //if (gomb.Key == ConsoleKey.Q)
-                            //{
-                            //    game.Shoot(actor);
-                            //    Current = !Current;
-                            //    run = false;
-                            //}
-                            //else if (gomb.Key == ConsoleKey.E)
-                            //{
-                            //    game.MeShoot(actor);
-                            //    if (game.Last_P_Shot == "Live")
-                            //    {
-                            //        Current = !Current;
-                            //    }
-                            //    run = false;
-                            //}
                         }
-                        else
+                        else if (actor == "dealer")
                         {
                             game.DealerRound("dealer", out string ChosedAction);
                             if (ChosedAction == "MeShoot")
@@ -248,16 +284,20 @@ namespace Buckshot
                             {
                                 Current = !Current;
                             }
-                            //Console.WriteLine(ChosedAction);
                             DealerActionED(ChosedAction);
                             run = false;
                         }
-
+                        else
+                        {
+                            Console.WriteLine("Invalid actor. Exiting loop.");
+                            run = false;
+                        }
                     }
 
 
-                    Console.WriteLine($"\nPlayer: {game.Energys("player")} Dealer: {game.Energys("dealer")} Lowest: {game.LowestEnergy()} ");
-                    Console.ReadLine();
+
+
+                   
                 }
 
             }
