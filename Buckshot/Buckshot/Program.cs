@@ -7,20 +7,29 @@ namespace Buckshot
     {
         public string Name = "Gold";
 
-        public bool Devkit = true;
+        public bool Devkit = false;
         static void Main(string[] args)
         {
             Program program = new Program();
             MainEngine game = new("Gold", 5);
-
-            //program.MainGame(game);
-            program.Selector("s");//-------------------|||||||---------------------------->|| EZ A SZAR NEM AKAR MŰKÖDNI !!!!!!!! <------------||||||||------------------
             
+            program.MainGame(game);
+            //program.Test();
         }
 
-        public void Selector(string highlight)
+
+
+
+        
+
+
+
+
+
+
+        public void DealerActionED(string highlight)
         {
-            string getted = highlight == "Shoot" ? "Player" : "Self"; // Ha Shoot, akkor Shoot, más esetben Self
+            string getted = highlight == "Shoot" ? "Player" : "Self"; 
 
             Console.WriteLine("Player");
             Console.WriteLine("Self");
@@ -57,16 +66,12 @@ namespace Buckshot
             }
             else
             {
-                Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine("Player");
-                Console.ResetColor();
+                Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.WriteLine("Self");
+                Console.ResetColor();
             }
         }
-
-
-
-
 
 
         public void MainGame(MainEngine game)
@@ -94,6 +99,8 @@ namespace Buckshot
                 }
 
             }
+
+            
 
             void Displyer()
             {
@@ -155,30 +162,77 @@ namespace Buckshot
                     }
                     bool run = true;
                     Displyer();
+                    string actor = Current == true ? "player" : "dealer";
+                    int indexer = 0;
                     while (run)
                     {
-                        string actor = Current == true ? "player" : "dealer";
                         if (actor == "player")
                         {
 
-
-                            Console.Write($"Q Dealer | E  Self | Shells({game.Shells.Count}): {string.Join(',', game.Shells)} ");
-                            ConsoleKeyInfo gomb = Console.ReadKey();
-                            if (gomb.Key == ConsoleKey.Q)
+                            string[] choose = { "Dealer", "Self" };
+                            
+                            for (int i = 0; i < choose.Length; i++)
                             {
-                                game.Shoot(actor);
-                                Current = !Current;
-                                run = false;
-                            }
-                            else if (gomb.Key == ConsoleKey.E)
-                            {
-                                game.MeShoot(actor);
-                                if (game.Last_P_Shot == "Live")
+                                if (i == indexer)
                                 {
-                                    Current = !Current;
+                                    Console.ForegroundColor = ConsoleColor.Magenta;
                                 }
-                                run = false;
+                                Console.WriteLine(choose[i]);
+                                Console.ResetColor();
                             }
+                            ConsoleKeyInfo gomb = Console.ReadKey(true);
+                            Console.SetCursorPosition(0, Console.CursorTop - 2);
+                            if (gomb.Key == ConsoleKey.DownArrow)
+                            {
+                                if (indexer + 1 != choose.Length)
+                                {
+                                    indexer++;
+                                }
+                            }
+                            else if (gomb.Key == ConsoleKey.UpArrow)
+                            {
+                                if (indexer - 1 != -1)
+                                {
+                                    indexer--;
+                                }
+                            }
+                            else if (gomb.Key == ConsoleKey.Enter)
+                            {
+                                if (choose[indexer] == "Dealer")
+                                {
+                                    game.Shoot(actor);
+                                    Current = !Current;
+                                    run = false;
+                                }
+                                else if (choose[indexer] == "Self")
+                                {
+                                    game.MeShoot(actor);
+                                    if (game.Last_P_Shot == "Live")
+                                    {
+                                        Current = !Current;
+                                    }
+                                    run = false;
+                                }
+                            }
+                            
+
+                            //Console.Write($"Q Dealer | E  Self ");
+                            //ConsoleKeyInfo gomb = Console.ReadKey(true);
+                            //if (gomb.Key == ConsoleKey.Q)
+                            //{
+                            //    game.Shoot(actor);
+                            //    Current = !Current;
+                            //    run = false;
+                            //}
+                            //else if (gomb.Key == ConsoleKey.E)
+                            //{
+                            //    game.MeShoot(actor);
+                            //    if (game.Last_P_Shot == "Live")
+                            //    {
+                            //        Current = !Current;
+                            //    }
+                            //    run = false;
+                            //}
                         }
                         else
                         {
@@ -195,7 +249,7 @@ namespace Buckshot
                                 Current = !Current;
                             }
                             //Console.WriteLine(ChosedAction);
-                            Selector(ChosedAction);
+                            DealerActionED(ChosedAction);
                             run = false;
                         }
 
