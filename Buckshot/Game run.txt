@@ -20,5 +20,4 @@ Round => Amig Van Energy
 
 |------Folytatás-------|
 
-|- A játékos köre működik ha ujra nekiállok akkor a dealer körét kell megcsinálom
-	| -------Az actor="player" változó minden körben váltson helyet ha player akkor a te köröd ha dealer akkor 		 az ő köre és ő választ
+|--- Itemekkel kell foglalkozni 
