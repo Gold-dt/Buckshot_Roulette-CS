@@ -20,10 +20,12 @@ namespace Buckshot
 
         public void DealerActionED(string highlight)
         {
-            string getted = highlight == "Shoot" ? "Player" : "Self"; 
+            string tabs = "\t\t\t\t\t\t   "; // 5 tabulátor
 
-            Console.WriteLine("Player");
-            Console.WriteLine("Self");
+            string getted = highlight == "Shoot" ? "Player" : "Self";
+            Console.WriteLine();
+            Console.WriteLine($"{tabs}Player");
+            Console.WriteLine($"{tabs}Self");
 
             for (int i = 0; i < 10; i++) // 10 iteráció
             {
@@ -33,36 +35,40 @@ namespace Buckshot
                 if (i % 2 == 0) // Páros iteráció: Player kiemelve
                 {
                     Console.ForegroundColor = ConsoleColor.Magenta;
-                    Console.WriteLine("Player");
+                    Console.WriteLine($"{tabs}Player");
                     Console.ResetColor();
-                    Console.WriteLine("Self"); // Az értékek nem változnak, csak a szín
+                    Console.WriteLine($"{tabs}Self"); // Az értékek nem változnak, csak a szín
                 }
                 else // Páratlan iteráció: Self kiemelve
                 {
-                    Console.WriteLine("Player");
+                    Console.WriteLine($"{tabs}Player");
                     Console.ForegroundColor = ConsoleColor.Magenta;
-                    Console.WriteLine("Self"); // Az értékek nem változnak, csak a szín
+                    Console.WriteLine($"{tabs}Self"); // Az értékek nem változnak, csak a szín
                     Console.ResetColor();
                 }
 
                 Thread.Sleep(200); // Késleltetés
             }
+
+            // Végső szöveg kiemelése
             Console.SetCursorPosition(0, Console.CursorTop - 2);
-            if(getted == "Player")
+            if (getted == "Player")
             {
-                Console.ForegroundColor= ConsoleColor.Magenta;
-                Console.WriteLine("Player");
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.WriteLine($"{tabs}Player");
                 Console.ResetColor();
-                Console.WriteLine("Self");
+                Console.WriteLine($"{tabs}Self");
             }
             else
             {
-                Console.WriteLine("Player");
+                Console.WriteLine($"{tabs}Player");
                 Console.ForegroundColor = ConsoleColor.Magenta;
-                Console.WriteLine("Self");
+                Console.WriteLine($"{tabs}Self");
                 Console.ResetColor();
             }
         }
+
+
 
 
         public void MainGame(MainEngine game)
@@ -95,6 +101,7 @@ namespace Buckshot
 
             void Displyer(string tabb)
             {
+                Console.Clear();
                 Console.WriteLine();
                 Console.ForegroundColor = ConsoleColor.DarkRed;
                 Console.Write(tabb); // Kezdő tabulátor
@@ -178,11 +185,7 @@ namespace Buckshot
                     Console.WriteLine();
                     Console.ResetColor();
                 }
-                else
-                {
-                    Console.Write(" │\n");
-                    Console.WriteLine("╰─────────────────────────────────╯");
-                }
+                
             }
 
 
@@ -212,12 +215,12 @@ namespace Buckshot
                             int maxWidth = choose.Max(item => item.Length) + 4;
 
                             // Felső szegély
-                            Console.WriteLine("╭" + new string('─', maxWidth - 2) + "╮");
+                            Console.WriteLine("\n\t\t\t\t\t\t   " + "╭" + new string('─', maxWidth - 2) + "╮");
 
                             // Lista elemei szegéllyel
                             for (int i = 0; i < choose.Length; i++)
                             {
-                                string line = $"│ {choose[i].PadRight(maxWidth - 4)} │";
+                                string line = $"\t\t\t\t\t\t   │ {choose[i].PadRight(maxWidth - 4)} │";
                                 if (i == indexer) // Ha ez a kiemelt elem
                                 {
                                     Console.ForegroundColor = ConsoleColor.Magenta;
@@ -227,13 +230,13 @@ namespace Buckshot
                             }
 
                             // Alsó szegély
-                            Console.WriteLine("╰" + new string('─', maxWidth - 2) + "╯");
+                            Console.WriteLine("\t\t\t\t\t\t   " + "╰" + new string('─', maxWidth - 2) + "╯");
 
                             // Billentyű olvasása
                             ConsoleKeyInfo gomb = Console.ReadKey(true);
 
                             // Kimenet törlése
-                            Console.SetCursorPosition(0, Console.CursorTop - 4);
+                            Console.SetCursorPosition(0, Console.CursorTop - 5);
                             
 
                             // Navigációs logika
