@@ -8,6 +8,7 @@ namespace Buckshot
         public string Name = "Gold";
 
         public bool Devkit = false;
+        public bool Emoji = true;
         static void Main(string[] args)
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
@@ -16,8 +17,10 @@ namespace Buckshot
             MainEngine game = new("Gold", 5);
             
             program.MainGame(game);
-            //program.Test();
+            
         }
+
+        
 
         public void DealerActionED(string highlight)
         {
@@ -189,7 +192,57 @@ namespace Buckshot
                 
             }
 
+            void NewShellShow()
+            {
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.Write($"\n\t\t\t\tShells: ");
+                for (int i = 0; i < game.Shells.Count; i++)
+                {
+                    string item = game.Shells[i];
+                    if (item == "Live")
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Cyan;
+                    }
 
+                    // Utolsó elem után nincs vessző
+                    if (i < game.Shells.Count - 1)
+                    {
+                        if (Emoji == true)
+                        {
+                            if (item == "Live")
+                            {
+                                Console.Write("🔴 ");
+                            }
+                            else
+                            {
+                                Console.Write("🔵 ");
+                            }
+                        }
+                        else
+                        {
+                            Console.Write($"{item},");
+                        }
+                    }
+                    else
+                    {
+                        if (item == "Live")
+                        {
+                            Console.Write("🔴 ");
+                        }
+                        else
+                        {
+                            Console.Write("🔵 ");
+                        }
+                    }
+                    Thread.Sleep( 500 );
+                }
+                Thread.Sleep ( 700 );
+            }
 
 
             bool Current = true;
@@ -203,6 +256,7 @@ namespace Buckshot
                     if (game.Shells.Count == 0)
                     {
                         game.NewShells();
+                        NewShellShow();
                     }
                     bool run = true;
                     Displyer("\t\t\t");
