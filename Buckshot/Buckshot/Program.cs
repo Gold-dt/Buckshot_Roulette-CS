@@ -1,25 +1,68 @@
 ﻿using GameEngine;
 using System;
 
+
 namespace Buckshot
 {
     class Program
     {
         public string Name = "Gold";
 
-        public bool Devkit = false;
+        public bool Devkit = true;
         public bool Emoji = true;
+        public string Difficulty => "Hard";//Easy,Medium,Hard
+
+
+        public int MaxRound => 3;
+
+
         static void Main(string[] args)
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
             Console.CursorVisible = false;
             Program program = new Program();
-            MainEngine game = new("Gold", 5);
             
-            program.MainGame(game);
+            MainEngine game = new("Gold", 5);
+            //program.MainGame(game);
+            program.Winner();
             
         }
+        public void Winner()
+        {
 
+            string logo = " █████ █████                        █████   ███   █████                    \r\n░░███ ░░███                        ░░███   ░███  ░░███                     \r\n ░░███ ███    ██████  █████ ████    ░███   ░███   ░███   ██████  ████████  \r\n  ░░█████    ███░░███░░███ ░███     ░███   ░███   ░███  ███░░███░░███░░███ \r\n   ░░███    ░███ ░███ ░███ ░███     ░░███  █████  ███  ░███ ░███ ░███ ░███ \r\n    ░███    ░███ ░███ ░███ ░███      ░░░█████░█████░   ░███ ░███ ░███ ░███ \r\n    █████   ░░██████  ░░████████       ░░███ ░░███     ░░██████  ████ █████\r\n   ░░░░░     ░░░░░░    ░░░░░░░░         ░░░   ░░░       ░░░░░░  ░░░░ ░░░░░ ";
+           
+            int test = 0;
+            foreach(var item in logo)
+            {
+                if(test == 0)
+                {
+
+                }
+            }
+
+
+            // █████ █████                        █████   ███   █████                    
+            //░░███ ░░███                        ░░███   ░███  ░░███                     
+            // ░░███ ███    ██████  █████ ████    ░███   ░███   ░███   ██████  ████████  
+            //  ░░█████    ███░░███░░███ ░███     ░███   ░███   ░███  ███░░███░░███░░███ 
+            //   ░░███    ░███ ░███ ░███ ░███     ░░███  █████  ███  ░███ ░███ ░███ ░███ 
+            //    ░███    ░███ ░███ ░███ ░███      ░░░█████░█████░   ░███ ░███ ░███ ░███ 
+            //    █████   ░░██████  ░░████████       ░░███ ░░███     ░░██████  ████ █████
+            //   ░░░░░     ░░░░░░    ░░░░░░░░         ░░░   ░░░       ░░░░░░  ░░░░ ░░░░░ 
+
+
+
+
+
+
+
+        }
+
+        public void Losed()
+        {
+
+        }
         
 
         public void DealerActionED(string highlight)
@@ -188,18 +231,25 @@ namespace Buckshot
                     }
                     Console.WriteLine();
                     Console.ResetColor();
+                    
+                    
+                    //Console.WriteLine($"\t\t\t\t\tFake: {string.Join(',', game.FakeShells())}");
                 }
                 
             }
+            
 
             void NewShellShow()
             {
+                
                 Console.Clear();
+                
                 Console.ForegroundColor = ConsoleColor.DarkYellow;
                 Console.Write($"\n\t\t\t\tShells: ");
-                for (int i = 0; i < game.Shells.Count; i++)
+                string[] Fake = game.FakeShells();
+                for (int i = 0; i < Fake.Length; i++)
                 {
-                    string item = game.Shells[i];
+                    string item = Fake[i];
                     if (item == "Live")
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
@@ -210,7 +260,7 @@ namespace Buckshot
                     }
 
                     // Utolsó elem után nincs vessző
-                    if (i < game.Shells.Count - 1)
+                    if (i < Fake.Length - 1)
                     {
                         if (Emoji == true)
                         {
@@ -246,7 +296,7 @@ namespace Buckshot
 
 
             bool Current = true;
-            while (game.Rounds < 4)
+            while (game.Rounds < MaxRound+1)
             {
                 Console.Clear();
                 game = new("Gold", 5);
@@ -330,7 +380,22 @@ namespace Buckshot
                         }
                         else if (actor == "dealer")
                         {
-                            game.DealerRound("dealer", out string ChosedAction);
+                            string ChosedAction = "";
+                            if (Difficulty == "Easy")
+                            {
+                                game.DealerRound("dealer", out string chosedAction);
+                                ChosedAction = chosedAction;
+                            }
+                            else if(Difficulty == "Medium")
+                            {
+                                game.DealerRoundMedium("dealer",out string chosedAction);
+                                ChosedAction = chosedAction;
+                            }
+                            else
+                            {
+                                game.DealerRoundHard("dealer", out string chosedAction);
+                                ChosedAction = chosedAction;
+                            }
                             if (ChosedAction == "MeShoot")
                             {
                                 if (game.Last_D_Shot == "Live")
@@ -357,7 +422,22 @@ namespace Buckshot
 
                    
                 }
-
+                Console.Clear();
+                string Lose()
+                {
+                    if (game.Energys("player") == 0) return "player";
+                    else return "dealer";
+                    
+                }
+                if(Lose() == "player")
+                {
+                    Console.WriteLine("▓██   ██▓ ▒█████   █    ██  ██▀███     ▓█████▄ ▓█████ ▄▄▄      ▓█████▄ \r\n ▒██  ██▒▒██▒  ██▒ ██  ▓██▒▓██ ▒ ██▒   ▒██▀ ██▌▓█   ▀▒████▄    ▒██▀ ██▌\r\n  ▒██ ██░▒██░  ██▒▓██  ▒██░▓██ ░▄█ ▒   ░██   █▌▒███  ▒██  ▀█▄  ░██   █▌\r\n  ░ ▐██▓░▒██   ██░▓▓█  ░██░▒██▀▀█▄     ░▓█▄   ▌▒▓█  ▄░██▄▄▄▄██ ░▓█▄   ▌\r\n  ░ ██▒▓░░ ████▓▒░▒▒█████▓ ░██▓ ▒██▒   ░▒████▓ ░▒████▒▓█   ▓██▒░▒████▓ \r\n   ██▒▒▒ ░ ▒░▒░▒░ ░▒▓▒ ▒ ▒ ░ ▒▓ ░▒▓░    ▒▒▓  ▒ ░░ ▒░ ░▒▒   ▓▒█░ ▒▒▓  ▒ \r\n ▓██ ░▒░   ░ ▒ ▒░ ░░▒░ ░ ░   ░▒ ░ ▒░    ░ ▒  ▒  ░ ░  ░ ▒   ▒▒ ░ ░ ▒  ▒ \r\n ▒ ▒ ░░  ░ ░ ░ ▒   ░░░ ░ ░   ░░   ░     ░ ░  ░    ░    ░   ▒    ░ ░  ░ \r\n ░ ░         ░ ░     ░        ░           ░       ░  ░     ░  ░   ░    \r\n ░ ░                                    ░                       ░      ");
+                }
+                else
+                {
+                    Console.WriteLine(" █████ █████                        █████   ███   █████                    \r\n░░███ ░░███                        ░░███   ░███  ░░███                     \r\n ░░███ ███    ██████  █████ ████    ░███   ░███   ░███   ██████  ████████  \r\n  ░░█████    ███░░███░░███ ░███     ░███   ░███   ░███  ███░░███░░███░░███ \r\n   ░░███    ░███ ░███ ░███ ░███     ░░███  █████  ███  ░███ ░███ ░███ ░███ \r\n    ░███    ░███ ░███ ░███ ░███      ░░░█████░█████░   ░███ ░███ ░███ ░███ \r\n    █████   ░░██████  ░░████████       ░░███ ░░███     ░░██████  ████ █████\r\n   ░░░░░     ░░░░░░    ░░░░░░░░         ░░░   ░░░       ░░░░░░  ░░░░ ░░░░░ ");
+                }
+                Console.ReadLine();
             }
         }
     }
