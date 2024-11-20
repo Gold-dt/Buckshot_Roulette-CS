@@ -7,10 +7,11 @@ namespace Buckshot
     {
         public string Name = "Gold";
 
-        public bool Devkit = true;
+        public bool Devkit = false;
         static void Main(string[] args)
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
+            Console.CursorVisible = false;
             Program program = new Program();
             MainEngine game = new("Gold", 5);
             
