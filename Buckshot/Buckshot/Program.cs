@@ -23,45 +23,120 @@ namespace Buckshot
             Program program = new Program();
             
             MainEngine game = new("Gold", 5);
-            //program.MainGame(game);
-            program.Winner();
+            program.MainGame(game);
+
+
             
+
+
         }
         public void Winner()
         {
 
             string logo = " █████ █████                        █████   ███   █████                    \r\n░░███ ░░███                        ░░███   ░███  ░░███                     \r\n ░░███ ███    ██████  █████ ████    ░███   ░███   ░███   ██████  ████████  \r\n  ░░█████    ███░░███░░███ ░███     ░███   ░███   ░███  ███░░███░░███░░███ \r\n   ░░███    ░███ ░███ ░███ ░███     ░░███  █████  ███  ░███ ░███ ░███ ░███ \r\n    ░███    ░███ ░███ ░███ ░███      ░░░█████░█████░   ░███ ░███ ░███ ░███ \r\n    █████   ░░██████  ░░████████       ░░███ ░░███     ░░██████  ████ █████\r\n   ░░░░░     ░░░░░░    ░░░░░░░░         ░░░   ░░░       ░░░░░░  ░░░░ ░░░░░ ";
-           
-            int test = 0;
-            foreach(var item in logo)
+
+            string tabb = "\t\t\t";
+            for (int i = 0; i < 5; i++)
             {
-                if(test == 0)
+
+                Console.Clear();
+                switch (i)
                 {
-
+                    case 0:
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+                        break;
+                    case 1:
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        break;
+                    case 2:
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+                        break;
+                    case 3:
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        break;
+                    case 4:
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+                        break;
                 }
+
+
+                Console.Write(tabb);
+                foreach (var item in logo)
+                {
+                    if (item == '\n')
+                    {
+                        Console.Write($"\n{tabb}");
+                    }
+                    else
+                    {
+                        Console.Write(item);
+                    }
+                }
+                Console.ResetColor();
+                Thread.Sleep(1000);
             }
-
-
-            // █████ █████                        █████   ███   █████                    
-            //░░███ ░░███                        ░░███   ░███  ░░███                     
-            // ░░███ ███    ██████  █████ ████    ░███   ░███   ░███   ██████  ████████  
-            //  ░░█████    ███░░███░░███ ░███     ░███   ░███   ░███  ███░░███░░███░░███ 
-            //   ░░███    ░███ ░███ ░███ ░███     ░░███  █████  ███  ░███ ░███ ░███ ░███ 
-            //    ░███    ░███ ░███ ░███ ░███      ░░░█████░█████░   ░███ ░███ ░███ ░███ 
-            //    █████   ░░██████  ░░████████       ░░███ ░░███     ░░██████  ████ █████
-            //   ░░░░░     ░░░░░░    ░░░░░░░░         ░░░   ░░░       ░░░░░░  ░░░░ ░░░░░ 
-
-
-
-
-
-
-
+            Console.WriteLine("\n\x1b[3mPress Enter to continue...");
+            Console.ResetColor();
+            Console.ReadLine();
         }
 
         public void Losed()
         {
+            string logo =
+                "▓██   ██▓  ▒█████    █    ██   ██▀███     ▓█████▄  ▓█████  ▄▄▄       ▓█████▄ \r\n" +
+                " ▒██  ██▒ ▒██▒  ██▒  ██  ▓██▒ ▓██ ▒ ██▒   ▒██▀ ██▌ ▓█   ▀ ▒████▄     ▒██▀ ██▌\r\n" +
+                "  ▒██ ██░ ▒██░  ██▒ ▓██  ▒██░ ▓██ ░▄█ ▒   ░██   █▌ ▒███   ▒██  ▀█▄   ░██   █▌\r\n" +
+                "  ░ ▐██▓░ ▒██   ██░ ▓▓█  ░██░ ▒██▀▀█▄     ░▓█▄   ▌ ▒▓█  ▄ ░██▄▄▄▄██  ░▓█▄   ▌\r\n" +
+                "  ░ ██▒▓░ ░ ████▓▒░ ▒▒█████▓  ░██▓ ▒██▒   ░▒████▓  ░▒████ ▒▓█   ▓██▒ ░▒████▓ \r\n" +
+                "   ██▒▒▒  ░ ▒░▒░▒░  ░▒▓▒ ▒ ▒  ░ ▒▓ ░▒▓░    ▒▒▓  ▒  ░░ ▒░  ░▒▒   ▓▒█░  ▒▒▓  ▒ \r\n" +
+                " ▓██ ░▒░    ░ ▒ ▒░  ░░▒░ ░ ░    ░▒ ░ ▒░    ░ ▒  ▒   ░ ░   ░ ▒   ▒▒ ░  ░ ▒  ▒ \r\n" +
+                " ▒ ▒ ░░   ░ ░ ░ ▒    ░░░ ░ ░    ░░   ░     ░ ░  ░     ░     ░   ▒     ░ ░  ░ \r\n" +
+                " ░ ░          ░ ░      ░         ░           ░        ░   ░     ░  ░    ░    \r\n" +
+                " ░ ░                                       ░                          ░      ";
 
+
+            string tabb = "\t\t\t";
+            for (int i = 0; i < 5; i++)
+            {
+               
+                Console.Clear();
+                switch (i){
+                    case 0:
+                        Console.ForegroundColor= ConsoleColor.DarkRed;
+                        break;
+                    case 1:
+                        Console.ForegroundColor= ConsoleColor.Red;
+                        break;
+                    case 2:
+                        Console.ForegroundColor= ConsoleColor.DarkRed;
+                        break;
+                    case 3:
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        break;
+                    case 4:
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
+                        break;
+                }
+
+                
+                Console.Write(tabb);
+                foreach (var item in logo)
+                {
+                    if (item == '\n')
+                    {
+                        Console.Write($"\n{tabb}");
+                    }
+                    else
+                    {
+                        Console.Write(item);
+                    }
+                }
+                Console.ResetColor();
+                Thread.Sleep(1000);
+            }
+            Console.WriteLine("\n\x1b[3mPress Enter to continue...");
+            Console.ResetColor();
+            Console.ReadLine();
         }
         
 
@@ -181,7 +256,7 @@ namespace Buckshot
                 Console.ResetColor();
                 Console.Write(" │");
                 Console.WriteLine($"\n{tab}╰─────────────────────────────────╯");
-                if (Devkit == true)
+                if (Devkit == true)//For Development
                 {
                     
                     Console.Write($"\t{tab} Lowest Energy: ");
@@ -231,7 +306,7 @@ namespace Buckshot
                     }
                     Console.WriteLine();
                     Console.ResetColor();
-                    
+                    Console.WriteLine($"{tab}Round: {game.Round}");
                     
                     //Console.WriteLine($"\t\t\t\t\tFake: {string.Join(',', game.FakeShells())}");
                 }
@@ -296,11 +371,15 @@ namespace Buckshot
 
 
             bool Current = true;
-            while (game.Rounds < MaxRound+1)
+            bool PlayerIsAlive = true;
+            int LastRound = 1;
+
+            while (game.Round < MaxRound+1 && PlayerIsAlive == true)
             {
                 Console.Clear();
-                game = new("Gold", 5);
-                
+                //game = new("Gold", 5);
+                //game.NextRound();
+                LastRound = game.Round;
                 while (game.LowestEnergy() != 0)
                 {
                     if (game.Shells.Count == 0)
@@ -431,13 +510,42 @@ namespace Buckshot
                 }
                 if(Lose() == "player")
                 {
-                    Console.WriteLine("▓██   ██▓ ▒█████   █    ██  ██▀███     ▓█████▄ ▓█████ ▄▄▄      ▓█████▄ \r\n ▒██  ██▒▒██▒  ██▒ ██  ▓██▒▓██ ▒ ██▒   ▒██▀ ██▌▓█   ▀▒████▄    ▒██▀ ██▌\r\n  ▒██ ██░▒██░  ██▒▓██  ▒██░▓██ ░▄█ ▒   ░██   █▌▒███  ▒██  ▀█▄  ░██   █▌\r\n  ░ ▐██▓░▒██   ██░▓▓█  ░██░▒██▀▀█▄     ░▓█▄   ▌▒▓█  ▄░██▄▄▄▄██ ░▓█▄   ▌\r\n  ░ ██▒▓░░ ████▓▒░▒▒█████▓ ░██▓ ▒██▒   ░▒████▓ ░▒████▒▓█   ▓██▒░▒████▓ \r\n   ██▒▒▒ ░ ▒░▒░▒░ ░▒▓▒ ▒ ▒ ░ ▒▓ ░▒▓░    ▒▒▓  ▒ ░░ ▒░ ░▒▒   ▓▒█░ ▒▒▓  ▒ \r\n ▓██ ░▒░   ░ ▒ ▒░ ░░▒░ ░ ░   ░▒ ░ ▒░    ░ ▒  ▒  ░ ░  ░ ▒   ▒▒ ░ ░ ▒  ▒ \r\n ▒ ▒ ░░  ░ ░ ░ ▒   ░░░ ░ ░   ░░   ░     ░ ░  ░    ░    ░   ▒    ░ ░  ░ \r\n ░ ░         ░ ░     ░        ░           ░       ░  ░     ░  ░   ░    \r\n ░ ░                                    ░                       ░      ");
+                    Losed();
+                    //break;
+                    PlayerIsAlive = false;
+                }
+                else if(Lose() == "dealer" && game.Round == MaxRound)
+                {
+                    Winner();
+                    game.NextRound();
                 }
                 else
                 {
-                    Console.WriteLine(" █████ █████                        █████   ███   █████                    \r\n░░███ ░░███                        ░░███   ░███  ░░███                     \r\n ░░███ ███    ██████  █████ ████    ░███   ░███   ░███   ██████  ████████  \r\n  ░░█████    ███░░███░░███ ░███     ░███   ░███   ░███  ███░░███░░███░░███ \r\n   ░░███    ░███ ░███ ░███ ░███     ░░███  █████  ███  ░███ ░███ ░███ ░███ \r\n    ░███    ░███ ░███ ░███ ░███      ░░░█████░█████░   ░███ ░███ ░███ ░███ \r\n    █████   ░░██████  ░░████████       ░░███ ░░███     ░░██████  ████ █████\r\n   ░░░░░     ░░░░░░    ░░░░░░░░         ░░░   ░░░       ░░░░░░  ░░░░ ░░░░░ ");
+                    game.NextRound();
+                    int margin = 10 - 5 - game.Round.ToString().Length - MaxRound.ToString().Length;
+                    string tab = "\t\t\t\t\t";
+
+                    // Első kijelzés
+                    Console.WriteLine($"{tab}╭{"─".PadLeft(10, '─')}╮\n{tab}│   {LastRound}/{MaxRound}{"".PadLeft(margin, ' ')} │\n{tab}╰{"─".PadLeft(10, '─')}╯");
+                    Thread.Sleep(1500);
+                    Console.Clear();
+
+                    // Második kijelzés villogással
+                    for (int i = 0; i < 4; i++) // 4 ciklus = 2 teljes villogás
+                    {
+                        // Sima szín
+                        Console.Clear();
+                        Console.Write($"{tab}╭{"─".PadLeft(10, '─')}╮\n{tab}│   ");
+                        Console.ForegroundColor = (i % 2 == 0) ? ConsoleColor.DarkYellow : ConsoleColor.Yellow; // Szín váltása
+                        Console.Write($"{game.Round}/{MaxRound}");
+                        Console.ResetColor();
+                        Console.Write($"{"".PadLeft(margin, ' ')} │\n{tab}╰{"─".PadLeft(10, '─')}╯");
+                        Thread.Sleep(700); // Fél másodperc várakozás
+                    }
+
+                    NewShellShow();
                 }
-                Console.ReadLine();
+                
             }
         }
     }

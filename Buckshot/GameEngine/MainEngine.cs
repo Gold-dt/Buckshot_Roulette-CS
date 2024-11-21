@@ -1,4 +1,5 @@
 ﻿using System.Numerics;
+using System.Xml.Linq;
 
 namespace GameEngine
 {
@@ -8,9 +9,9 @@ namespace GameEngine
 
         public int StarterEnergy { get; init; }
         public int Rounds => 3;
-        public int Round => 1;
+        public int Round { get; set; } = 1;
 
-        
+        public string PName { get; init; }
 
         public string Last_P_Shot;
         public string Last_D_Shot;
@@ -27,13 +28,16 @@ namespace GameEngine
             player = new(starterEnergy,name);
             dealer = new(starterEnergy);
             _lowest = starterEnergy;
+            PName = name;
         }
 
         public void NextRound()
         {
-            player = new(StarterEnergy);
+            player = new(StarterEnergy, PName);
             dealer = new(StarterEnergy);
-            
+            _lowest = StarterEnergy;
+            NewShells();
+            Round++;
         }
 
 
