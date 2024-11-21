@@ -16,10 +16,12 @@ namespace GameEngine
         public string Last_P_Shot;
         public string Last_D_Shot;
 
+        public int StarterItemsAmmount => 3;
         
 
         Player player;
         Dealer dealer;
+        Items ItemTypes = new();
         private int _lowest;
 
         public MainEngine(string name,int starterEnergy)
@@ -89,6 +91,17 @@ namespace GameEngine
             
         }
         
+        public void NewItems(string actor)
+        {
+            ICharacter character = actor == "player" ? player : dealer;
+
+            
+        }
+
+        public void ShowItems()
+        {
+            Console.WriteLine(string.Join(',',ItemTypes.Usables));
+        }
 
         public void Shoot(string actor)
         {

@@ -23,9 +23,9 @@ namespace Buckshot
             Program program = new Program();
             
             MainEngine game = new("Gold", 5);
-            program.MainGame(game);
+            //program.MainGame(game);
 
-
+            game.ShowItems();
             
 
 
