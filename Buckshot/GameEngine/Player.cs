@@ -10,7 +10,7 @@ namespace GameEngine
     {
         public int Energy { get;  set; }
         public string Name { get; init; }
-        public List<string> Items { get; private set; }
+        public List<string> Items { get; private set; } = new List<string>();
 
         public Player(int StarterEnergy,string name)
         {
@@ -20,12 +20,13 @@ namespace GameEngine
         public Player(int StarterEnergy)
         {
             Energy = StarterEnergy;
+            
         }
         public void AddItem(string item)
         {
-            if(Items.Count()<8)
+            if (Items.Count() < 8)
             {
-                Items.Append(item);
+                Items.Add(item);
             }
         }
         public void RemoveItem(string item)
@@ -36,7 +37,7 @@ namespace GameEngine
             {
                 if(item == Items[i])
                 {
-
+                    Items.RemoveAt(i);
                 }
             }
         }

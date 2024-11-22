@@ -1,4 +1,5 @@
-﻿using System.Numerics;
+﻿using System;
+using System.Numerics;
 using System.Xml.Linq;
 
 namespace GameEngine
@@ -90,19 +91,51 @@ namespace GameEngine
             }
             
         }
-        
-        public void NewItems(string actor)
+
+
+        //----------------------------------------------
+        public void ShowItems(string actor)
         {
             ICharacter character = actor == "player" ? player : dealer;
-
             
+            Console.WriteLine($"{character.Items.Count} | "+string.Join(',', character.Items));
         }
 
-        public void ShowItems()
+        public void ItemGen()
         {
-            Console.WriteLine(string.Join(',',ItemTypes.Usables));
+            player.Items.Clear();
+            dealer.Items.Clear();
+
+            for (int i = 0; i < Random.Shared.Next(3, 9); i++)
+            {
+                player.AddItem(ItemTypes.Usables[Random.Shared.Next(0,ItemTypes.Usables.Count)]);
+                dealer.AddItem(ItemTypes.Usables[Random.Shared.Next(0, ItemTypes.Usables.Count)]);
+            }
         }
 
+        public void ItemUse(string actor,string item,out string CurrentShell)
+        {
+            CurrentShell = "";
+            ICharacter character = actor == "player" ? player : dealer;
+            switch (item)
+            {
+                case "Beer":
+                    ItemTypes.UseBeer(Shells, character,out string ShellEjected);
+                    CurrentShell = ShellEjected;
+                    break;
+                case "Cuffs":
+                    //ItemTypes.UseBeer(Shells,actor);
+                    Console.WriteLine("Work");
+                    break;
+                case "SpyGlass":
+                    //ItemTypes.UseBeer(Shells,actor);
+                    break;
+                case "Changer":
+                    //ItemTypes.UseBeer(Shells, actor);
+                    break;
+            }
+        }
+        //--------------------------------------------------
         public void Shoot(string actor)
         {
             ICharacter character = actor == "player" ? dealer : player; 

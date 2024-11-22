@@ -9,7 +9,7 @@ namespace GameEngine
     public class Dealer : ICharacter
     {
         public int Energy { get;  set; }
-        public List<string> Items { get; private set; }
+        public List<string> Items { get; private set; } = new List<string>();
 
         public Dealer(int StarterEnergy)
         {
@@ -19,7 +19,7 @@ namespace GameEngine
         {
             if (Items.Count() < 8)
             {
-                Items.Append(item);
+                Items.Add(item);
             }
         }
         public void RemoveItem(string item)
@@ -30,7 +30,7 @@ namespace GameEngine
             {
                 if (item == Items[i])
                 {
-
+                    Items.RemoveAt(i);
                 }
             }
         }

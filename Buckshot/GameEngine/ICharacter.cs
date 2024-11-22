@@ -9,8 +9,8 @@ namespace GameEngine
     public interface ICharacter
     {
         public int Energy { get;  set; }
-        public List<string> Items {  get; }
-        
+        public List<string> Items { get; }
+
         public void AddItem(string item);
         public void RemoveItem(string item);
     }

@@ -25,9 +25,16 @@ namespace Buckshot
             MainEngine game = new("Gold", 5);
             //program.MainGame(game);
 
-            game.ShowItems();
-            
-
+            while (true)
+            {
+                game.NewShells();
+                game.ItemGen();
+                game.ShowItems("player");
+                game.ItemUse("player", "Beer", out string CurrentShell);
+                game.ShowItems("player");
+                game.ShowItems("dealer");
+                Console.ReadLine();
+            }
 
         }
         public void Winner()
