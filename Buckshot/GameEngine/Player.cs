@@ -31,14 +31,9 @@ namespace GameEngine
         }
         public void RemoveItem(string item)
         {
-
-
-            for(int i = 0; i < Items.Count(); i++)
+            if (item.Contains(item))
             {
-                if(item == Items[i])
-                {
-                    Items.RemoveAt(i);
-                }
+                Items.Remove(item);
             }
         }
     }

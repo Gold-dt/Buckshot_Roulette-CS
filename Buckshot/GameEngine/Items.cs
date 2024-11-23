@@ -13,9 +13,9 @@ namespace GameEngine
          "Beer","Cuffs","SpyGlass","Changer"
         };
 
-        public void UseBeer(List<string> Shells,ICharacter character,out string Current)
+        public void UseBeer(List<string> Shells,out string Current)
         {
-            character.RemoveItem("Beer");
+            
             Current = Shells[0];
             Shells.RemoveAt(0);
         }

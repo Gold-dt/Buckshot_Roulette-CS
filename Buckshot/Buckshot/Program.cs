@@ -23,18 +23,7 @@ namespace Buckshot
             Program program = new Program();
             
             MainEngine game = new("Gold", 5);
-            //program.MainGame(game);
-
-            while (true)
-            {
-                game.NewShells();
-                game.ItemGen();
-                game.ShowItems("player");
-                game.ItemUse("player", "Beer", out string CurrentShell);
-                game.ShowItems("player");
-                game.ShowItems("dealer");
-                Console.ReadLine();
-            }
+            program.MainGame(game);
 
         }
         public void Winner()
@@ -263,6 +252,7 @@ namespace Buckshot
                 Console.ResetColor();
                 Console.Write(" │");
                 Console.WriteLine($"\n{tab}╰─────────────────────────────────╯");
+                Console.WriteLine();
                 if (Devkit == true)//For Development
                 {
                     
@@ -314,7 +304,8 @@ namespace Buckshot
                     Console.WriteLine();
                     Console.ResetColor();
                     Console.WriteLine($"{tab}Round: {game.Round}");
-                    
+                    Console.WriteLine($"{tab}Player: {game.ShowItems("player", out int PL_ItemsC)}({PL_ItemsC})");
+                    Console.WriteLine($"{tab}Dealer: {game.ShowItems("dealer",out int DL_ItemsC)}({DL_ItemsC})");
                     //Console.WriteLine($"\t\t\t\t\tFake: {string.Join(',', game.FakeShells())}");
                 }
                 
@@ -386,6 +377,10 @@ namespace Buckshot
                 Console.Clear();
                 //game = new("Gold", 5);
                 //game.NextRound();
+                if(game.Round != 1)
+                {
+                    game.ItemGen();
+                }
                 LastRound = game.Round;
                 while (game.LowestEnergy() != 0)
                 {
@@ -393,6 +388,8 @@ namespace Buckshot
                     {
                         game.NewShells();
                         NewShellShow();
+                        
+                        game.ItemGive();
                     }
                     bool run = true;
                     Displyer("\t\t\t");

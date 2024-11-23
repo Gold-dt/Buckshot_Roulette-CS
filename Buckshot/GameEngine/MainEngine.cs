@@ -94,21 +94,42 @@ namespace GameEngine
 
 
         //----------------------------------------------
-        public void ShowItems(string actor)
+        
+        public string ShowItems(string actor,out int counted)
         {
             ICharacter character = actor == "player" ? player : dealer;
-            
-            Console.WriteLine($"{character.Items.Count} | "+string.Join(',', character.Items));
+            counted = character.Items.Count;
+            return string.Join(',', character.Items);
         }
-
+        
         public void ItemGen()
         {
             player.Items.Clear();
             dealer.Items.Clear();
 
-            for (int i = 0; i < Random.Shared.Next(3, 9); i++)
+            int shellCount = Shells.Count; // Jelenlegi Shell-ek száma (max 8)
+            int maxItems = Math.Min(shellCount, 8); // Itemek száma nem lehet több, mint 8
+
+            for (int i = 0; i < maxItems; i++)
             {
-                player.AddItem(ItemTypes.Usables[Random.Shared.Next(0,ItemTypes.Usables.Count)]);
+                // Véletlenszerű item hozzáadása a játékoshoz
+                player.AddItem(ItemTypes.Usables[Random.Shared.Next(0, ItemTypes.Usables.Count)]);
+
+                // Véletlenszerű item hozzáadása az ellenfélhez
+                dealer.AddItem(ItemTypes.Usables[Random.Shared.Next(0, ItemTypes.Usables.Count)]);
+            }
+        }
+
+        public void ItemGive()
+        {
+            int shellCount = Shells.Count; // Jelenlegi Shell-ek száma (max 8)
+            int maxItems = Math.Min(shellCount, 8); // Itemek száma nem lehet több, mint 8
+            for (int i = 0; i < maxItems; i++)
+            {
+                // Véletlenszerű item hozzáadása a játékoshoz
+                player.AddItem(ItemTypes.Usables[Random.Shared.Next(0, ItemTypes.Usables.Count)]);
+
+                // Véletlenszerű item hozzáadása az ellenfélhez
                 dealer.AddItem(ItemTypes.Usables[Random.Shared.Next(0, ItemTypes.Usables.Count)]);
             }
         }
@@ -120,7 +141,7 @@ namespace GameEngine
             switch (item)
             {
                 case "Beer":
-                    ItemTypes.UseBeer(Shells, character,out string ShellEjected);
+                    ItemTypes.UseBeer(Shells,out string ShellEjected);
                     CurrentShell = ShellEjected;
                     break;
                 case "Cuffs":
@@ -134,6 +155,7 @@ namespace GameEngine
                     //ItemTypes.UseBeer(Shells, actor);
                     break;
             }
+            character.RemoveItem(item);
         }
         //--------------------------------------------------
         public void Shoot(string actor)
