@@ -1,0 +1,30 @@
+Game run
+
+---Round => Kiosztja az adatokat Name,StarterEnergy
+-------Energy=> ha elfogy akkor következő kör
+-------------Shells => Ha elfogy akkor új itemek és új lőszerek
+---------------Új lőszerek > A lőszertipusokból kiválaszt random egy random mennyiségben (1-8)
+
+int ShellIndex => Ez a szám mindig 0 ra esik ha elfogynak a lőszerek és újak kerülnek a shells ekbe
+---| Ez az hogy hol tart a kör lőszer
+
+
+Round => Amig Van Energy
+                  |---------2 akcio
+			    | - Shoot - ShellIndex-et rálövi
+				| - Ha üres akkor nem von le semmit a dealer jön
+				| - Ha nem üres akkor levon 1 életet tőle és Dealer követezik
+			    | - MeShoot
+				| - Ha üres akkor nem von le és még te jössz
+				| - Ha nem üres akkor levon 1 életet tőled és Dealer követezik
+
+|------Folytatás-------|
+
+|-- Item Use
+|-- Dealer logika az itemekkel kiegszítve
+|-- BugCheck
+|-- Játék végi statok
+|-- Main Menu implementálása
+|-- Settings/Kör spec-ek kiegészítése
+|-- Grafikai cuccok
+|-- Readme
