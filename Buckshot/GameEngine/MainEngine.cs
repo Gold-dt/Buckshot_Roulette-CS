@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.Metrics;
 using System.Numerics;
 using System.Xml.Linq;
 
@@ -100,6 +101,12 @@ namespace GameEngine
             ICharacter character = actor == "player" ? player : dealer;
             counted = character.Items.Count;
             return string.Join(',', character.Items);
+        }
+
+        public List<string> ActorItems(string actor)
+        {
+            ICharacter character = actor == "player" ? player : dealer;
+            return character.Items;
         }
         
         public void ItemGen()

@@ -24,7 +24,8 @@ namespace Buckshot
             
             MainEngine game = new("Gold", 5);
             program.MainGame(game);
-
+            
+            
         }
         public void Winner()
         {
@@ -134,6 +135,7 @@ namespace Buckshot
             Console.ResetColor();
             Console.ReadLine();
         }
+
         
 
         public void DealerActionED(string highlight)
@@ -185,9 +187,6 @@ namespace Buckshot
                 Console.ResetColor();
             }
         }
-
-
-
 
         public void MainGame(MainEngine game)
         {
@@ -368,9 +367,86 @@ namespace Buckshot
             }
 
 
+            void ItemUseShow(List<string> Items, string tab,bool pressed)
+            {
+                bool run = true;
+                int indexer = 0;
+
+                // Kiindulási sor mentése
+                int startRow = Console.CursorTop;
+                if (pressed)
+                {
+                    Console.SetCursorPosition(0, Console.CursorTop - Items.Count+2);
+                }
+
+                // Első rajzolás
+                //Console.WriteLine($"{tab}╭────────────────╮");
+                //foreach (var _ in Items)
+                //{
+                //    Console.WriteLine($"{tab}│                │");
+                //}
+                //Console.WriteLine($"{tab}╰────────────────╯");
+
+                while (run)
+                {
+                    // Visszaállás a menü tetejére
+                    Console.SetCursorPosition(0, startRow);
+
+                    // Menü újrarajzolása
+                    Console.WriteLine($"{tab}╭──── ITEMS ─────╮");
+                    for (int i = 0; i < Items.Count; i++)
+                    {
+                        Console.Write($"{tab}│");
+
+                        if (i == indexer)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Magenta; // Kiemelés
+                        }
+
+                        Console.Write($"    {Items[i]}".PadRight(16)); // Kitöltés a megjelenítéshez
+                        Console.ResetColor();
+                        Console.WriteLine("│");
+                    }
+                    Console.WriteLine($"{tab}╰────────────────╯");
+
+                    // Billentyűzet input kezelése
+                    ConsoleKeyInfo gomb = Console.ReadKey();
+
+                    if (gomb.Key == ConsoleKey.DownArrow)
+                    {
+                        if (indexer < Items.Count - 1)
+                        {
+                            indexer++;
+                        }
+                    }
+                    else if (gomb.Key == ConsoleKey.UpArrow)
+                    {
+                        if (indexer > 0)
+                        {
+                            indexer--;
+                        }
+                    }
+                    else if (gomb.Key == ConsoleKey.Enter)
+                    {
+                        run = false; // Kilépés
+                        Console.SetCursorPosition(0, startRow + Items.Count + 2);
+                        //Console.WriteLine($"Selected: {Items[indexer]}");
+                        Displyer(tab);
+                    }
+                    else if (gomb.Key == ConsoleKey.Escape)
+                    {
+                        run = false;
+                        Console.SetCursorPosition(0, Console.CursorTop - Items.Count+4);
+                        pressed = false;
+                        Displyer(tab);
+                    }
+                }
+            }
+
             bool Current = true;
             bool PlayerIsAlive = true;
             int LastRound = 1;
+            bool HudPressed = false;
 
             while (game.Round < MaxRound+1 && PlayerIsAlive == true)
             {
@@ -395,11 +471,12 @@ namespace Buckshot
                     Displyer("\t\t\t");
                     string actor = Current == true ? "player" : "dealer";
                     int indexer = 0;
+                    
                     while (run)
                     {
                         if (actor == "player")
                         {
-                            string[] choose = { "Dealer", "Self" };
+                            string[] choose = { "Dealer", "Self","Items" };
                             int maxWidth = choose.Max(item => item.Length) + 4;
 
                             // Felső szegély
@@ -422,9 +499,9 @@ namespace Buckshot
 
                             // Billentyű olvasása
                             ConsoleKeyInfo gomb = Console.ReadKey(true);
-
+                            
                             // Kimenet törlése
-                            Console.SetCursorPosition(0, Console.CursorTop - 5);
+                            Console.SetCursorPosition(0, Console.CursorTop - 6);
                             
 
                             // Navigációs logika
@@ -458,6 +535,11 @@ namespace Buckshot
                                         Current = !Current;
                                     }
                                     run = false;
+                                }
+                                else if(choose[indexer] == "Items")
+                                {
+                                    ItemUseShow(game.ActorItems(actor), "\t\t\t\t",HudPressed);
+                                    HudPressed = true;
                                 }
                             }
                         }
