@@ -367,7 +367,7 @@ namespace Buckshot
             }
 
 
-            void ItemUseShow(List<string> Items, string tab,bool pressed)
+            void ItemUseShow(string actor,List<string> Items, string tab,bool pressed)
             {
                 bool run = true;
                 int indexer = 0;
@@ -424,6 +424,10 @@ namespace Buckshot
                         run = false; // Kilépés
                         Console.SetCursorPosition(0, startRow + Items.Count + 2);
                         //Console.WriteLine($"Selected: {Items[indexer]}");
+                        if (game.ActorItems(actor).Count > 0)
+                        {
+                            game.ItemUse(actor, Items[indexer], out string CurrentShell);
+                        }
                         Displyer(tab);
                     }
                     else if (gomb.Key == ConsoleKey.Escape || gomb.Key == ConsoleKey.RightArrow || gomb.Key == ConsoleKey.D)
@@ -467,8 +471,9 @@ namespace Buckshot
                     int indexer = 0;
 
                     game.NextDamage = 1;
+                    game.SelfRoundReset(actor);
 
-                    while (run)
+                    while (run && game.Shells.Count != 0)
                     {
                         
                         if (actor == "player")
@@ -521,7 +526,10 @@ namespace Buckshot
                                 if (choose[indexer] == "Dealer")
                                 {
                                     game.Shoot(actor);
-                                    Current = !Current;
+                                    if(game.GetActorRounds(actor) == 1)
+                                    {
+                                        Current = !Current;
+                                    }
                                     run = false;
                                 }
                                 else if (choose[indexer] == "Self")
@@ -535,11 +543,12 @@ namespace Buckshot
                                 }
                                 else if(choose[indexer] == "Items")
                                 {
-                                    ItemUseShow(game.ActorItems(actor), "\t\t\t\t",HudPressed);
+                                    ItemUseShow(actor,game.ActorItems(actor), "\t\t\t\t",HudPressed);
                                     HudPressed = true;
                                 }
                             }
                         }
+                        //Dealer Stuffs
                         else if (actor == "dealer")
                         {
                             string ChosedAction = "";

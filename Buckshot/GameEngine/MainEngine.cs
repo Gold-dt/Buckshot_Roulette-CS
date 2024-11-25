@@ -7,13 +7,15 @@ namespace GameEngine
 {
     public class MainEngine
     {
+        
+
         public List<string> Shells = new List<string>();
 
         public int StarterEnergy { get; init; }
         public int Rounds => 3;
         public int Round { get; set; } = 1;
 
-        public int NextDamage { get; set; } = 1;
+        public int NextDamage = 1;
         public string PName { get; init; }
 
         public string Last_P_Shot;
@@ -169,17 +171,30 @@ namespace GameEngine
                     //Console.WriteLine("Work");
                     break;
                 case "SpyGlass":
-                    //ItemTypes.UseBeer(Shells,actor);
+                    ItemTypes.SpyGlass(Shells,out string CRS);
+                    CurrentShell = CRS;
                     break;
                 case "Changer":
-                    //ItemTypes.UseBeer(Shells, actor);
+                    ItemTypes.Changer(Shells,out CRS);
+                    CurrentShell = CRS;
                     break;
                 case "Knife":
+                    ItemTypes.Knife(out int cdmg);
+                    NextDamage = cdmg;
                     break;
             }
             character.RemoveItem(item);
         }
+        public void SelfRoundReset(string actor)
+        {
+            ICharacter character = actor == "player" ? player : dealer;
+
+            character.SelfRounds = 1;
+        }
+        
         //--------------------------------------------------
+
+        
         public void Shoot(string actor)
         {
             ICharacter character = actor == "player" ? dealer : player; 

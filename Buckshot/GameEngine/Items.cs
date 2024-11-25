@@ -20,6 +20,8 @@ namespace GameEngine
             Current = Shells[0];
             Shells.RemoveAt(0);
             
+            
+            
         }
         public void SpyGlass(List<string> Shells,out string Current)
         {
@@ -45,9 +47,9 @@ namespace GameEngine
         {
             character.SelfRounds = 2;
         }
-        public void Knife()
+        public void Knife(out int currentdmg)
         {
-            game.NextDamage = 2;
+            currentdmg = 2;
         }
 
         public override string ToString()
