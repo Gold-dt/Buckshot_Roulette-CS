@@ -410,16 +410,16 @@ namespace Buckshot
                     Console.WriteLine($"{tab}╰────────────────╯");
 
                     // Billentyűzet input kezelése
-                    ConsoleKeyInfo gomb = Console.ReadKey();
+                    ConsoleKeyInfo gomb = Console.ReadKey(true);
 
-                    if (gomb.Key == ConsoleKey.DownArrow)
+                    if (gomb.Key == ConsoleKey.DownArrow || gomb.Key == ConsoleKey.S)
                     {
                         if (indexer < Items.Count - 1)
                         {
                             indexer++;
                         }
                     }
-                    else if (gomb.Key == ConsoleKey.UpArrow)
+                    else if (gomb.Key == ConsoleKey.UpArrow || gomb.Key == ConsoleKey.W)
                     {
                         if (indexer > 0)
                         {
@@ -433,7 +433,7 @@ namespace Buckshot
                         //Console.WriteLine($"Selected: {Items[indexer]}");
                         Displyer(tab);
                     }
-                    else if (gomb.Key == ConsoleKey.Escape)
+                    else if (gomb.Key == ConsoleKey.Escape || gomb.Key == ConsoleKey.RightArrow || gomb.Key == ConsoleKey.D)
                     {
                         run = false;
                         Console.SetCursorPosition(0, Console.CursorTop - Items.Count+4);
@@ -505,14 +505,14 @@ namespace Buckshot
                             
 
                             // Navigációs logika
-                            if (gomb.Key == ConsoleKey.DownArrow)
+                            if (gomb.Key == ConsoleKey.DownArrow || gomb.Key == ConsoleKey.S)
                             {
                                 if (indexer + 1 != choose.Length)
                                 {
                                     indexer++;
                                 }
                             }
-                            else if (gomb.Key == ConsoleKey.UpArrow)
+                            else if (gomb.Key == ConsoleKey.UpArrow || gomb.Key == ConsoleKey.W)
                             {
                                 if (indexer - 1 != -1)
                                 {
