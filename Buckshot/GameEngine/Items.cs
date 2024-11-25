@@ -8,18 +8,47 @@ namespace GameEngine
 {
     public class Items
     {
+        MainEngine game;
         public List<string> Usables = new List<string>() 
         {
-         "Beer","Cuffs","SpyGlass","Changer"
+         "Beer","Cuffs","SpyGlass","Changer","Knife"
         };
 
-        public void UseBeer(List<string> Shells,out string Current)
+        public void Beer(List<string> Shells,out string Current)
         {
             
             Current = Shells[0];
             Shells.RemoveAt(0);
+            
         }
-        
+        public void SpyGlass(List<string> Shells,out string Current)
+        {
+            Current = Shells[0];
+        }
+        public void Changer(List<string> Shells, out string Current)
+        {
+
+            Current = Shells[0];
+            switch (Current)
+            {
+                case "Live":
+                    Shells[0] = "Blank";
+                    break;
+                case "Blank":
+                    Shells[0] = "Live";
+                    break;
+            }
+            Current = Shells[0];
+                
+        }
+        public void Cuffs(ICharacter character)
+        {
+            character.SelfRounds = 2;
+        }
+        public void Knife()
+        {
+            game.NextDamage = 2;
+        }
 
         public override string ToString()
         {

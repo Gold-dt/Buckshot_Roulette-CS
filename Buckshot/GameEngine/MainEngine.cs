@@ -13,13 +13,19 @@ namespace GameEngine
         public int Rounds => 3;
         public int Round { get; set; } = 1;
 
+        public int NextDamage { get; set; } = 1;
         public string PName { get; init; }
 
         public string Last_P_Shot;
         public string Last_D_Shot;
 
         public int StarterItemsAmmount => 3;
-        
+
+        public int GetActorRounds(string actor)
+        {
+            ICharacter character = actor == "player" ? player : dealer;
+            return character.SelfRounds;
+        }
 
         Player player;
         Dealer dealer;
@@ -44,6 +50,12 @@ namespace GameEngine
             Round++;
         }
 
+        public void Next(string actor)
+        {
+            ICharacter character = actor == "player" ? player : dealer;
+            NextDamage = 1;
+            character.SelfRounds = 1;
+        }
 
         public string[] FakeShells()
         {
@@ -109,6 +121,7 @@ namespace GameEngine
             return character.Items;
         }
         
+        
         public void ItemGen()
         {
             player.Items.Clear();
@@ -148,11 +161,11 @@ namespace GameEngine
             switch (item)
             {
                 case "Beer":
-                    ItemTypes.UseBeer(Shells,out string ShellEjected);
+                    ItemTypes.Beer(Shells,out string ShellEjected);
                     CurrentShell = ShellEjected;
                     break;
                 case "Cuffs":
-                    //ItemTypes.UseBeer(Shells,actor);
+                    ItemTypes.Cuffs(character);
                     Console.WriteLine("Work");
                     break;
                 case "SpyGlass":
@@ -160,6 +173,8 @@ namespace GameEngine
                     break;
                 case "Changer":
                     //ItemTypes.UseBeer(Shells, actor);
+                    break;
+                case "Knife":
                     break;
             }
             character.RemoveItem(item);
@@ -205,10 +220,11 @@ namespace GameEngine
             current = Shells.First();
             if (current == "Live")
             {
-                if (character.Energy - 1 >= 0)
-                {
-                    character.Energy--;
-                }
+                //if (character.Energy - 1 >= 0)
+                //{
+                //    character.Energy--;
+                //}
+                character.DMG(NextDamage);
             }
             else if(current == "Blank")
             {

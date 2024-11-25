@@ -379,13 +379,6 @@ namespace Buckshot
                     Console.SetCursorPosition(0, Console.CursorTop - Items.Count+2);
                 }
 
-                // Első rajzolás
-                //Console.WriteLine($"{tab}╭────────────────╮");
-                //foreach (var _ in Items)
-                //{
-                //    Console.WriteLine($"{tab}│                │");
-                //}
-                //Console.WriteLine($"{tab}╰────────────────╯");
 
                 while (run)
                 {
@@ -470,10 +463,19 @@ namespace Buckshot
                     bool run = true;
                     Displyer("\t\t\t");
                     string actor = Current == true ? "player" : "dealer";
-                    int indexer = 0;
                     
+                    int indexer = 0;
+
+                    game.NextDamage = 1;
+
                     while (run)
                     {
+                        for (int i = 0; i < game.GetActorRounds(actor); i++)
+                        {
+                            game.ItemUse(actor, "Cuffs", out string CurrentShell);
+                            Console.WriteLine(game.GetActorRounds(actor));
+                            Console.ReadKey();
+                        }
                         if (actor == "player")
                         {
                             string[] choose = { "Dealer", "Self","Items" };

@@ -13,5 +13,7 @@ namespace GameEngine
 
         public void AddItem(string item);
         public void RemoveItem(string item);
+        public void DMG(int dmg);
+        public int SelfRounds { get; set; }
     }
 }

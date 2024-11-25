@@ -9,6 +9,7 @@ namespace GameEngine
     public class Dealer : ICharacter
     {
         public int Energy { get;  set; }
+        public int SelfRounds { get; set; } = 1;
         public List<string> Items { get; private set; } = new List<string>();
 
         public Dealer(int StarterEnergy)
@@ -32,6 +33,17 @@ namespace GameEngine
                 {
                     Items.RemoveAt(i);
                 }
+            }
+        }
+        public void DMG(int dmg)
+        {
+            if (Energy - dmg < 0)
+            {
+                Energy = 0;
+            }
+            else
+            {
+                Energy -= dmg;
             }
         }
     }

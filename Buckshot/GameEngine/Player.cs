@@ -10,6 +10,7 @@ namespace GameEngine
     {
         public int Energy { get;  set; }
         public string Name { get; init; }
+        public int SelfRounds { get; set; } = 1;
         public List<string> Items { get; private set; } = new List<string>();
 
         public Player(int StarterEnergy,string name)
@@ -34,6 +35,17 @@ namespace GameEngine
             if (item.Contains(item))
             {
                 Items.Remove(item);
+            }
+        }
+        public void DMG(int dmg)
+        {
+            if(Energy-dmg < 0)
+            {
+                Energy = 0;
+            }
+            else
+            {
+                Energy -= dmg;
             }
         }
     }
