@@ -523,6 +523,7 @@ namespace Buckshot
                             }
                             else if (gomb.Key == ConsoleKey.Enter)
                             {
+                                //Ezt kell megoldani mert a cuff az amikor magamra lövök akkor egyből kikapcsolja úgyhogy még bugos
                                 if (choose[indexer] == "Dealer")
                                 {
                                     game.Shoot(actor);
@@ -537,10 +538,15 @@ namespace Buckshot
                                     game.MeShoot(actor);
                                     if (game.Last_P_Shot == "Live")
                                     {
-                                        Current = !Current;
+                                        if (game.GetActorRounds(actor) == 1)
+                                        {
+                                            Current = !Current;
+                                        }
+                                        //Current = !Current;
                                     }
                                     run = false;
                                 }
+                                //--------------------------------------------------
                                 else if(choose[indexer] == "Items")
                                 {
                                     ItemUseShow(actor,game.ActorItems(actor), "\t\t\t\t",HudPressed);
