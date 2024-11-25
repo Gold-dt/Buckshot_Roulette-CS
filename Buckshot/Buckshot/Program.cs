@@ -470,12 +470,7 @@ namespace Buckshot
 
                     while (run)
                     {
-                        for (int i = 0; i < game.GetActorRounds(actor); i++)
-                        {
-                            game.ItemUse(actor, "Cuffs", out string CurrentShell);
-                            Console.WriteLine(game.GetActorRounds(actor));
-                            Console.ReadKey();
-                        }
+                        
                         if (actor == "player")
                         {
                             string[] choose = { "Dealer", "Self","Items" };

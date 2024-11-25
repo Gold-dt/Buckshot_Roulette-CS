@@ -166,7 +166,7 @@ namespace GameEngine
                     break;
                 case "Cuffs":
                     ItemTypes.Cuffs(character);
-                    Console.WriteLine("Work");
+                    //Console.WriteLine("Work");
                     break;
                 case "SpyGlass":
                     //ItemTypes.UseBeer(Shells,actor);
