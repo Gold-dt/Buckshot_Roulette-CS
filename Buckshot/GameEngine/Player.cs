@@ -23,6 +23,7 @@ namespace GameEngine
             Energy = StarterEnergy;
             
         }
+        
         public void AddItem(string item)
         {
             if (Items.Count() < 8)

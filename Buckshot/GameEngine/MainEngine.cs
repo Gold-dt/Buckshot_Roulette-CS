@@ -110,6 +110,7 @@ namespace GameEngine
 
         //----------------------------------------------
         
+
         public string ShowItems(string actor,out int counted)
         {
             ICharacter character = actor == "player" ? player : dealer;
@@ -182,6 +183,9 @@ namespace GameEngine
                     ItemTypes.Knife(out int cdmg);
                     NextDamage = cdmg;
                     break;
+                case "Cigaretta":
+                    ItemTypes.Cigaretta(character,StarterEnergy);
+                    break;
             }
             character.RemoveItem(item);
         }
@@ -194,14 +198,26 @@ namespace GameEngine
         public void AddRound(string actor)
         {
             ICharacter character = actor == "player" ? player : dealer;
-            if(GetActorRounds(actor)+1 != 3)
+            if(GetActorRounds(actor)+1 != 2)
             {
                 character.SelfRounds++;
             }
         }
+        public void RemoveRound(string actor)
+        {
+            ICharacter character = actor == "player" ? player : dealer;
+            if (GetActorRounds(actor) - 1 < 1)
+            {
+                character.SelfRounds = 1;
+            }
+            else
+            {
+                character.SelfRounds--;
+            }
+        }
         //--------------------------------------------------
 
-        
+
         public void Shoot(string actor)
         {
             ICharacter character = actor == "player" ? dealer : player; 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +12,7 @@ namespace GameEngine
         MainEngine game;
         public List<string> Usables = new List<string>() 
         {
-         "Beer","Cuffs","SpyGlass","Changer","Knife"
+         "Beer","Cuffs","SpyGlass","Changer","Knife","Cigaretta"
         };
 
         public void Beer(List<string> Shells,out string Current)
@@ -22,6 +23,17 @@ namespace GameEngine
             
             
             
+        }
+        public void Cigaretta(ICharacter character,int maxEnergy)
+        {
+            if(character.Energy+1 > maxEnergy)
+            {
+                character.Energy = maxEnergy;
+            }
+            else
+            {
+                character.Energy++;
+            }
         }
         public void SpyGlass(List<string> Shells,out string Current)
         {

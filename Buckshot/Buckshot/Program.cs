@@ -302,11 +302,11 @@ namespace Buckshot
                     }
                     Console.WriteLine();
                     Console.ResetColor();
-                    Console.WriteLine($"{tab}Round: {game.Round}");
+                    Console.WriteLine($"{tab}Round: {game.Round}\tP_Round: {game.GetActorRounds("player")}");
                     Console.WriteLine($"{tab}Player: {game.ShowItems("player", out int PL_ItemsC)}({PL_ItemsC})");
                     Console.WriteLine($"{tab}Dealer: {game.ShowItems("dealer",out int DL_ItemsC)}({DL_ItemsC})");
                     //Console.WriteLine($"\t\t\t\t\tFake: {string.Join(',', game.FakeShells())}");
-                    Console.WriteLine($"{tab}PlayerRounds: {game.GetActorRounds("player")}");
+                    //Console.WriteLine($"{tab}PlayerRounds: {game.GetActorRounds("player")}");
                 }
                 
             }
@@ -473,7 +473,7 @@ namespace Buckshot
                     int indexer = 0;
 
                     game.NextDamage = 1;
-                    game.SelfRoundReset(actor);
+                    
 
                     while (run && game.Shells.Count != 0)
                     {
@@ -525,7 +525,7 @@ namespace Buckshot
                             }
                             else if (gomb.Key == ConsoleKey.Enter)
                             {
-                                //Ezt kell megoldani mert a cuff az amikor magamra lövök akkor egyből kikapcsolja úgyhogy még bugos
+                                
                                 if (choose[indexer] == "Dealer")
                                 {
                                     game.Shoot(actor);
@@ -533,15 +533,29 @@ namespace Buckshot
                                     {
                                         Current = !Current;
                                     }
+                                    else
+                                    {
+                                        
+                                        game.RemoveRound(actor);
+                                    }
                                     run = false;
                                 }
                                 else if (choose[indexer] == "Self")
                                 {
                                     game.MeShoot(actor);
                                     
-                                    if (game.Last_P_Shot == "Live" && game.GetActorRounds(actor) == 1)
+                                    if (game.Last_P_Shot == "Live")
                                     {
-                                        Current = !Current;
+
+                                        if (game.GetActorRounds(actor) == 1)
+                                        {
+                                            Current = !Current;
+                                        }
+                                        else
+                                        {
+
+                                            game.RemoveRound(actor);
+                                        }
                                     }
                                     run = false;
                                 }
