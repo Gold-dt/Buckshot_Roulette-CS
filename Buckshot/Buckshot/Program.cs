@@ -306,6 +306,7 @@ namespace Buckshot
                     Console.WriteLine($"{tab}Player: {game.ShowItems("player", out int PL_ItemsC)}({PL_ItemsC})");
                     Console.WriteLine($"{tab}Dealer: {game.ShowItems("dealer",out int DL_ItemsC)}({DL_ItemsC})");
                     //Console.WriteLine($"\t\t\t\t\tFake: {string.Join(',', game.FakeShells())}");
+                    Console.WriteLine($"{tab}PlayerRounds: {game.GetActorRounds("player")}");
                 }
                 
             }
@@ -444,6 +445,7 @@ namespace Buckshot
             bool PlayerIsAlive = true;
             int LastRound = 1;
             bool HudPressed = false;
+            
 
             while (game.Round < MaxRound+1 && PlayerIsAlive == true)
             {
@@ -536,13 +538,10 @@ namespace Buckshot
                                 else if (choose[indexer] == "Self")
                                 {
                                     game.MeShoot(actor);
-                                    if (game.Last_P_Shot == "Live")
+                                    
+                                    if (game.Last_P_Shot == "Live" && game.GetActorRounds(actor) == 1)
                                     {
-                                        if (game.GetActorRounds(actor) == 1)
-                                        {
-                                            Current = !Current;
-                                        }
-                                        //Current = !Current;
+                                        Current = !Current;
                                     }
                                     run = false;
                                 }

@@ -191,7 +191,14 @@ namespace GameEngine
 
             character.SelfRounds = 1;
         }
-        
+        public void AddRound(string actor)
+        {
+            ICharacter character = actor == "player" ? player : dealer;
+            if(GetActorRounds(actor)+1 != 3)
+            {
+                character.SelfRounds++;
+            }
+        }
         //--------------------------------------------------
 
         
