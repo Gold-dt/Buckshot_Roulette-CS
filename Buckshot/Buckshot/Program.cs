@@ -15,15 +15,18 @@ namespace Buckshot
 
         public int MaxRound => 3;
 
+        ItemView itemView = new ItemView();
 
         static void Main(string[] args)
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
             Console.CursorVisible = false;
             Program program = new Program();
-            
+            ItemView itemView = new ItemView();
             MainEngine game = new("Gold", 5);
-            program.MainGame(game);
+            itemView.UseChanger("Live");
+            
+            //program.MainGame(game);
             
             
         }
@@ -427,6 +430,7 @@ namespace Buckshot
                         //Console.WriteLine($"Selected: {Items[indexer]}");
                         if (game.ActorItems(actor).Count > 0)
                         {
+                            itemView.Show(Items[indexer], game.Shells[0]);
                             game.ItemUse(actor, Items[indexer], out string CurrentShell);
                         }
                         Displyer(tab);
