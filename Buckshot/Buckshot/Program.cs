@@ -8,7 +8,7 @@ namespace Buckshot
     {
         public string Name = "Gold";
 
-        public bool Devkit = true;
+        public bool Devkit = false;
         public bool Emoji = true;
         public string Difficulty => "Hard";//Easy,Medium,Hard
 
@@ -24,9 +24,10 @@ namespace Buckshot
             Program program = new Program();
             ItemView itemView = new ItemView();
             MainEngine game = new("Gold", 5);
-            itemView.UseChanger("Live");
+
             
-            //program.MainGame(game);
+
+            program.MainGame(game);
             
             
         }
@@ -253,8 +254,11 @@ namespace Buckshot
                 Console.Write($"{game.Energys("dealer")}");
                 Console.ResetColor();
                 Console.Write(" │");
+                
                 Console.WriteLine($"\n{tab}╰─────────────────────────────────╯");
                 Console.WriteLine();
+                Console.WriteLine($"{tab}│ Used Items: \x1b[3m"  +string.Join(',', game.GetActorUsedItems("player"))+ "\x1b[39m │");
+                Console.ResetColor();
                 if (Devkit == true)//For Development
                 {
                     
@@ -308,8 +312,7 @@ namespace Buckshot
                     Console.WriteLine($"{tab}Round: {game.Round}\tP_Round: {game.GetActorRounds("player")}");
                     Console.WriteLine($"{tab}Player: {game.ShowItems("player", out int PL_ItemsC)}({PL_ItemsC})");
                     Console.WriteLine($"{tab}Dealer: {game.ShowItems("dealer",out int DL_ItemsC)}({DL_ItemsC})");
-                    //Console.WriteLine($"\t\t\t\t\tFake: {string.Join(',', game.FakeShells())}");
-                    //Console.WriteLine($"{tab}PlayerRounds: {game.GetActorRounds("player")}");
+                    
                 }
                 
             }
@@ -430,6 +433,7 @@ namespace Buckshot
                         //Console.WriteLine($"Selected: {Items[indexer]}");
                         if (game.ActorItems(actor).Count > 0)
                         {
+                            
                             itemView.Show(Items[indexer], game.Shells[0]);
                             game.ItemUse(actor, Items[indexer], out string CurrentShell);
                         }

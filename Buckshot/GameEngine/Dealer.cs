@@ -11,6 +11,7 @@ namespace GameEngine
         public int Energy { get;  set; }
         public int SelfRounds { get; set; } = 1;
         public List<string> Items { get; private set; } = new List<string>();
+        public List<string> UsedItems { get; private set; } = new List<string>();
 
         public Dealer(int StarterEnergy)
         {
@@ -22,6 +23,10 @@ namespace GameEngine
             {
                 Items.Add(item);
             }
+        }
+        public void AddUsed(string Item)
+        {
+            UsedItems.Add(Item);
         }
         public void RemoveItem(string item)
         {

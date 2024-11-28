@@ -12,7 +12,7 @@ namespace Buckshot
     {
         string tab = "\t\t\t\t";
         public string Shotgun = " ,______________________________________       \r\n|_________________,----------._ [____]  \"\"-,__  __....-----=====\r\n               (_(||||||||||||)___________/   \"\"                |\r\n                  `----------'        [ ))\"-,                   |\r\n                                       \"\"    `,  _,--....___    |\r\n                                               `/           \"\"\"\" ";
-        public string ShawedOFF = " ,________________________________       \r\n|__________,----------._ [____]  \"\"-,__  __...-----===\"\r\n        (_(||||||||||||)___________/   \"\"             |\r\n           `----------'        [ ))\"-,                |\r\n                                \"\"    `,  _,--...___  |\r\n                                        `/          \"\"\"";
+        public string ShawedOFF = "                     ,________________________________       \r\n                    |__________,----------._ [____]  \"\"-,__  __...-----===\"\r\n                            (_(||||||||||||)___________/   \"\"             |\r\n                               `----------'        [ ))\"-,                |\r\n                                                    \"\"    `,  _,--...___  |\r\n                                                            `/          \"\"\"";
         public string Knife = "___________________________________ ______________________\r\n \\                                  | (_)     (_)    (_)   \\\r\n  `.                                |  __________________   }\r\n    `-..........................____|_(                  )_/";
         public string Glass = "    \t   ______  \r\n        .-'      `-.           \r\n       .'            `.         \r\n      /                \\        \r\n     ;                 ;`       \r\n     |                 |;       \r\n     ;                 ;|\r\n     '\\               / ;       \r\n      \\`.           .' /        \r\n       `.`-._____.-' .'         \r\n         / /`_____.-'           \r\n        / / /                   \r\n       / / /\r\n      / / /\r\n     / / /\r\n    / / /\r\n   / / /\r\n  / / /\r\n / / /\r\n/ / /\r\n\\/_/";
         public string ActiveGlass = "            ______              \r\n         .-'      `-.           \r\n       .'            `.         \r\n      /      \x1b[91m __\x1b[39m       \\        \r\n     ;       \x1b[91m|##|\x1b[39m      ;`       \r\n     |       \x1b[91m|##|\x1b[39m      |;       \r\n     ;       \x1b[91m|##|\x1b[39m      ;|\r\n     '\\      \x1b[91m****\x1b[39m     / ;       \r\n      \\`.           .' /        \r\n       `.`-._____.-' .'         \r\n         / /`_____.-'           \r\n        / / /                   \r\n       / / /\r\n      / / /\r\n     / / /\r\n    / / /\r\n   / / /\r\n  / / /\r\n / / /\r\n/ / /\r\n\\/_/";
@@ -26,12 +26,15 @@ namespace Buckshot
         public string Live = " __ \r\n|##|\r\n|##|\r\n|##|\r\n****";
         public string Blank = " __ \r\n|  |\r\n|  |\r\n|  |\r\n****";
 
+        public string Beer = "⢀⣴⠟⠉⠉⠉⠉⠉⠙⠻⣦⡀\r\n⢸⡇⠀⠀⣠⣤⣤⣄⠀⠀⢸⡇\r\n⢸⣇⣀⣾⠟⢉⡉⠻⣷⣀⣸⡇\r\n⢸⣏⣉⡉⢠⣿⣿⡄⢉⣉⣹⡇\r\n⢸⣿⣿⡇⢸⣿⣿⡇⢸⣿⣿⡇\r\n⢸⣏⣉⣁⡀⠻⠟⢀⣈⣉⣹⡇\r\n⢸⡏⠉⠙⢿⣶⣶⡿⠋⠉⢹⡇\r\n⢸⡇⠀⠀⠀⠀ ⠀⠀⠀⢸⡇\r\n⠸⣧⣀⣀⣀⣀⣀⣀⣀⣀⣼⠇\r\n⠀⠈⠉⠉⠉⠉⠉⠉⠉⠉⠁⠀";
+        public string Beer2 = "    _--\r\n⢀⣴⠟⠉⠉⠉⠉⠉⠙⠻⣦⡀\r\n⢸⡇⠀⠀⣠⣤⣤⣄⠀⠀⢸⡇\r\n⢸⣇⣀⣾⠟⢉⡉⠻⣷⣀⣸⡇\r\n⢸⣏⣉⡉⢠⣿⣿⡄⢉⣉⣹⡇\r\n⢸⣿⣿⡇⢸⣿⣿⡇⢸⣿⣿⡇\r\n⢸⣏⣉⣁⡀⠻⠟⢀⣈⣉⣹⡇\r\n⢸⡏⠉⠙⢿⣶⣶⡿⠋⠉⢹⡇\r\n⢸⡇⠀⠀⠀⠀ ⠀⠀⠀⢸⡇\r\n⠸⣧⣀⣀⣀⣀⣀⣀⣀⣀⣼⠇\r\n⠀⠈⠉⠉⠉⠉⠉⠉⠉⠉⠁⠀";
+        public string Beer3 = "    _/\r\n⢀⣴⠟⠉⠉  ⠉⠙⠻⣦⡀\r\n⢸⡇⠀⠀⣠⣤⣤⣄⠀⠀⢸⡇\r\n⢸⣇⣀⣾⠟⢉⡉⠻⣷⣀⣸⡇\r\n⢸⣏⣉⡉⢠⣿⣿⡄⢉⣉⣹⡇\r\n⢸⣿⣿⡇⢸⣿⣿⡇⢸⣿⣿⡇\r\n⢸⣏⣉⣁⡀⠻⠟⢀⣈⣉⣹⡇\r\n⢸⡏⠉⠙⢿⣶⣶⡿⠋⠉⢹⡇\r\n⢸⡇⠀⠀⠀⠀ ⠀⠀⠀⢸⡇\r\n⠸⣧⣀⣀⣀⣀⣀⣀⣀⣀⣼⠇\r\n⠀⠈⠉⠉⠉⠉⠉⠉⠉⠉⠁⠀";
         public void Show(string item,string CurrentShell)
         {
             switch (item)
             {
                 case "Beer":
-                    
+                    UseBeer(CurrentShell);
                     break;
                 case "Cuffs":
                     UseCuff();
@@ -43,7 +46,7 @@ namespace Buckshot
                     UseChanger(CurrentShell);
                     break;
                 case "Knife":
-                    
+                    UseKnife();
                     break;
                 case "Cigaretta":
                     UseCigarette();
@@ -133,8 +136,11 @@ namespace Buckshot
 
         public void UseChanger(string Shell)
         {
+            // Beállítások az adott állapothoz (Live vagy Blank)
             string Current = Shell == "Live" ? Live : Blank;
             string CHD = Shell == "Live" ? Blank : Live;
+            ConsoleColor CurrentColor = Shell == "Live" ? ConsoleColor.Red : ConsoleColor.Blue;
+            ConsoleColor CHDColor = Shell == "Live" ? ConsoleColor.Blue : ConsoleColor.Red;
 
             string tabb = "";
 
@@ -142,27 +148,89 @@ namespace Buckshot
             {
                 tabb += "\t";
                 Console.Clear();
+
                 if (i < 3)
                 {
+                    // Az első három iteráció: az aktuális állapot
+                    Console.ForegroundColor = CurrentColor;
                     Shower(Current, tabb, false);
                 }
-                else if(i == 3)
+                else if (i == 3)
                 {
+                    // Átmenet animáció
+                    Console.ForegroundColor = CurrentColor;
                     Shower(Current, tabb, false);
                     Thread.Sleep(1500);
+
                     Console.Clear();
+                    Thread.Sleep(1000);
                     Shower(Current, tabb, false);
-                    Thread.Sleep(1500);
+
                     Console.Clear();
+                    Console.ForegroundColor = CHDColor;
                     Shower(CHD, tabb, false);
                 }
                 else
                 {
+                    // Az utolsó három iteráció: az új állapot
+                    Console.ForegroundColor = CHDColor;
                     Shower(CHD, tabb, false);
                 }
+
+                // Késleltetés az iterációk között
                 Thread.Sleep(400);
             }
+
+            // Szín visszaállítása az alapértelmezettre
+            Console.ResetColor();
         }
 
+        public void UseBeer(string Shell)
+        {
+            Console.Clear();
+            string Current = Shell == "Live" ? Live : Blank;
+            ConsoleColor CurrentColor = Shell == "Live"? ConsoleColor.Red : ConsoleColor.Blue;
+            string tab = "\t\t\t\t";
+            Console.WriteLine();
+            Shower(Beer, tab, false);
+            Thread.Sleep(500);
+            Console.Clear();
+            Shower(Beer2, tab, false);
+            Thread.Sleep(500);
+            Console.Clear();
+            Shower(Beer3, tab, false);
+            tab += "\t";
+            for (int i = 0; i < 5; i++)
+            {
+                for (int line = 0; line < Console.WindowHeight; line++)
+                {
+                    Console.SetCursorPosition(48, line); 
+                    Console.Write(new string(' ', Console.WindowWidth - 48)); 
+                }
+                Console.ForegroundColor = CurrentColor;
+                Console.SetCursorPosition(0, 0);
+                tab += "\t";
+                Shower(Current,tab, false);
+                Thread.Sleep(400);
+                //Console.Clear() ;
+            }
+            Console.SetCursorPosition(0, 10);
+            Console.ResetColor();
+        }
+
+        public void UseKnife()
+        {
+            Console.Clear();
+            string tab = "\t\t";
+            Shower(Shotgun,tab,false);
+            Console.WriteLine();
+            Thread.Sleep(800);
+            Shower(Knife,"\t",false);
+            Thread.Sleep(800);
+            Console.SetCursorPosition(0, 0);
+            Shower(ShawedOFF,tab,false);
+            Console.SetCursorPosition(0, 10);
+            Thread.Sleep(800);
+        }
     }
 }

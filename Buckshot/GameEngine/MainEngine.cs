@@ -92,10 +92,11 @@ namespace GameEngine
             return shuffled;
         }
 
-
+        
 
         public void NewShells()
         {
+            
             Shells.Clear();
             string[] shelltypes = ["Blank","Live"];
             Random random = new Random();
@@ -110,7 +111,7 @@ namespace GameEngine
 
         //----------------------------------------------
         
-
+        public List<string> GetActorUsedItems(string actor) => actor == "player"? player.UsedItems : dealer.UsedItems;
         public string ShowItems(string actor,out int counted)
         {
             ICharacter character = actor == "player" ? player : dealer;
@@ -129,6 +130,9 @@ namespace GameEngine
         {
             player.Items.Clear();
             dealer.Items.Clear();
+
+            
+
 
             int shellCount = Shells.Count; // Jelenlegi Shell-ek száma (max 8)
             int maxItems = Math.Min(shellCount, 8); // Itemek száma nem lehet több, mint 8
@@ -188,6 +192,7 @@ namespace GameEngine
                     break;
             }
             character.RemoveItem(item);
+            character.AddUsed(item);
         }
         public void SelfRoundReset(string actor)
         {

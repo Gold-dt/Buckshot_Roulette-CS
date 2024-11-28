@@ -12,6 +12,7 @@ namespace GameEngine
         public string Name { get; init; }
         public int SelfRounds { get; set; } = 1;
         public List<string> Items { get; private set; } = new List<string>();
+        public List<string> UsedItems { get; private set; } = new List<string>();
 
         public Player(int StarterEnergy,string name)
         {
@@ -23,7 +24,10 @@ namespace GameEngine
             Energy = StarterEnergy;
             
         }
-        
+        public void AddUsed(string Item)
+        {
+            UsedItems.Add(Item);
+        }
         public void AddItem(string item)
         {
             if (Items.Count() < 8)
