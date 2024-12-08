@@ -18,8 +18,8 @@ namespace GameEngine
         public int NextDamage = 1;
         public string PName { get; init; }
 
-        public string Last_P_Shot;
-        public string Last_D_Shot;
+        public string Last_P_Shot = "";
+        public string Last_D_Shot = "";
 
         public int StarterItemsAmmount => 3;
 
@@ -145,6 +145,12 @@ namespace GameEngine
                 // Véletlenszerű item hozzáadása az ellenfélhez
                 dealer.AddItem(ItemTypes.Usables[Random.Shared.Next(0, ItemTypes.Usables.Count)]);
             }
+        }
+
+        public void UsedItemReset()
+        {
+            player.UsedItems.Clear();
+            dealer.UsedItems.Clear();
         }
 
         public void ItemGive()
@@ -306,160 +312,30 @@ namespace GameEngine
         //----------------------------------------------------------
 
 
-        public void DealerRoundHard(string actor, out string ChosedAction)
+        
+        
+        public void DealerRound(string actor, out string ChosedAction,out string chosenItem)
         {
             Random r = new Random();
+            ChosedAction = string.Empty;
+            chosenItem = "0";
 
-            // Játékállapot
-            int dealerEnergy = Energys("dealer");
-            int playerEnergy = Energys("player");
-            int liveShells = Shells.Count(s => s == "Live");
-            int blankShells = Shells.Count(s => s == "Blank");
-            int totalShells = Shells.Count;
-
-            // Kulcsfontosságú logikai feltételek
-            bool playerVulnerable = playerEnergy <= 1; // Az ellenfél könnyen legyőzhető
-            bool dealerVulnerable = dealerEnergy <= 1; // A dealer kockázatban van
-            bool canEliminatePlayer = liveShells >= 1 && playerVulnerable; // Lehetséges nyerés
-            bool saveDealer = liveShells > blankShells && dealerVulnerable; // Dealer megmentése fontos
-
-            // Első helyzetek: 1 shell maradt
-            if (totalShells == 1)
-            {
-                if (Shells.First() == "Live")
-                {
-                    Shoot(actor); // Ha élő shell az utolsó, lőjön a játékosra
-                    ChosedAction = "Shoot";
-                }
-                else
-                {
-                    MeShoot(actor); // Ha üres shell az utolsó, célozza magát
-                    ChosedAction = "MeShoot";
-                }
-            }
-            else if (liveShells == 0) // Nincs több élő shell, csak védekezés
-            {
-                MeShoot(actor);
-                ChosedAction = "MeShoot";
-            }
-            else
-            {
-                // Haladó logika döntéshozás
-                if (canEliminatePlayer && r.Next(0, 100) < 95) // Ha megölheti a játékost, tegye meg
-                {
-                    Shoot(actor);
-                    ChosedAction = "Shoot";
-                }
-                else if (saveDealer && r.Next(0, 100) < 85) // Ha saját energiája alacsony, célozza magát
-                {
-                    MeShoot(actor);
-                    ChosedAction = "MeShoot";
-                }
-                else if (dealerEnergy > playerEnergy && r.Next(0, 100) < 80) // Ha dealer előnyben van, támadjon
-                {
-                    Shoot(actor);
-                    ChosedAction = "Shoot";
-                }
-                else if (dealerVulnerable && r.Next(0, 100) < 70) // Ha dealer veszélyben van, védekezzen
-                {
-                    MeShoot(actor);
-                    ChosedAction = "MeShoot";
-                }
-                else // Véletlen ritka hibázás
-                {
-                    if (r.Next(0, 2) == 0)
-                    {
-                        Shoot(actor);
-                        ChosedAction = "Shoot";
-                    }
-                    else
-                    {
-                        MeShoot(actor);
-                        ChosedAction = "MeShoot";
-                    }
-                }
-            }
-        }
-
-
-        public void DealerRoundMedium(string actor, out string ChosedAction)
-        {
-            Random r = new Random();
-
-            // Különböző döntési súlyozások
-            int dealerEnergy = Energys("dealer");
-            int playerEnergy = Energys("player");
-
-            // Logika súlyozása a körülmények alapján
-            bool preferSelf = Shells.Contains("Live") && dealerEnergy > 2 && Shells.Count > 1;
-            bool preferShoot = dealerEnergy > playerEnergy || Shells.Count == 1;
-
-            // Alapvető döntési logika: súlyozott preferencia
-            if (r.Next(0, 100) < 80) // 70%-ban stratégiai döntést hoz
-            {
-                if (Shells.Count == 1) // Ha csak egy shell maradt
-                {
-                    if (Shells.First() == "Live")
-                    {
-                        Shoot(actor);
-                        ChosedAction = "Shoot";
-                    }
-                    else
-                    {
-                        MeShoot(actor);
-                        ChosedAction = "MeShoot";
-                    }
-                }
-                else if (preferSelf) // Amikor inkább saját magát célozza
-                {
-                    MeShoot(actor);
-                    ChosedAction = "MeShoot";
-                }
-                else if (preferShoot) // Amikor inkább az ellenfelet támadja
-                {
-                    Shoot(actor);
-                    ChosedAction = "Shoot";
-                }
-                else // Alapértelmezett eset, véletlenszerű döntés
-                {
-                    int actions = r.Next(0, 2);
-                    if (actions == 0)
-                    {
-                        Shoot(actor);
-                        ChosedAction = "Shoot";
-                    }
-                    else
-                    {
-                        MeShoot(actor);
-                        ChosedAction = "MeShoot";
-                    }
-                }
-            }
-            else // 30%-ban véletlenszerű döntés, hogy ne legyen kiszámítható
-            {
-                int actions = r.Next(0, 2);
-                if (actions == 0)
-                {
-                    Shoot(actor);
-                    ChosedAction = "Shoot";
-                }
-                else
-                {
-                    MeShoot(actor);
-                    ChosedAction = "MeShoot";
-                }
-            }
-        }
-
-        public void DealerRound(string actor, out string ChosedAction)
-        {
-            Random r = new Random();
+            ICharacter character = actor == "player" ? player : dealer;
 
             bool logic = r.Next(0, 100) < 60;
 
-            if (logic == true)
+            if (logic)
             {
-                if (Shells.Contains("Live") == false && Shells.Count > 2)
+                // Ha van tárgy és logikusan használható
+                if (character.Items.Count > 0)
+                {
+                    int itemIndex = r.Next(0, character.Items.Count);
+                    chosenItem = character.Items[itemIndex];
+                    ItemUse(actor, chosenItem, out string CurrentShell);
+                    
+                    ChosedAction = $"Used {chosenItem}";
+                }
+                else if (!Shells.Contains("Live") && Shells.Count > 2)
                 {
                     MeShoot(actor);
                     ChosedAction = "MeShoot";
@@ -506,9 +382,8 @@ namespace GameEngine
                     ChosedAction = "MeShoot";
                 }
             }
-
-
-
+            
         }
+        
     }
 }

@@ -8,9 +8,8 @@ namespace Buckshot
     {
         public string Name = "Gold";
 
-        public bool Devkit = false;
-        public bool Emoji = true;
-        public string Difficulty => "Hard";//Easy,Medium,Hard
+        public bool Devkit = true;
+        public bool Emoji = false;
 
 
         public int MaxRound => 3;
@@ -24,12 +23,20 @@ namespace Buckshot
             Program program = new Program();
             ItemView itemView = new ItemView();
             MainEngine game = new("Gold", 5);
+            BasicLoader Setup = new BasicLoader();
+            Loader loader = new Loader();
 
-            
+            Setup.Kerdes("Konzolod megtudja jeleníteni az emoji-kat: ", ["Igen", "Nem"], ConsoleColor.Cyan);
+            Setup.Kerdes("Fejlesztői nézetet kérsz? ", ["Igen", "Nem"], ConsoleColor.Cyan);
+            program.Devkit = Setup.Valasz[0] == "Igen" ? true : false;
+            program.Emoji = Setup.Valasz[1] == "Igen" ? true : false;
+
+
+            loader.FullLoader(3, 2);
 
             program.MainGame(game);
-            
-            
+
+
         }
         public void Winner()
         {
@@ -257,7 +264,11 @@ namespace Buckshot
                 
                 Console.WriteLine($"\n{tab}╰─────────────────────────────────╯");
                 Console.WriteLine();
-                Console.WriteLine($"{tab}│ Used Items: \x1b[3m"  +string.Join(',', game.GetActorUsedItems("player"))+ "\x1b[39m │");
+                
+                if (game.GetActorUsedItems("player").Count() > 0)
+                {
+                    Console.WriteLine($"{tab}│ Used Items: \x1b[3m" + string.Join(',', game.GetActorUsedItems("player")) + "\x1b[39m │");
+                }
                 Console.ResetColor();
                 if (Devkit == true)//For Development
                 {
@@ -309,9 +320,10 @@ namespace Buckshot
                     }
                     Console.WriteLine();
                     Console.ResetColor();
-                    Console.WriteLine($"{tab}Round: {game.Round}\tP_Round: {game.GetActorRounds("player")}");
+                    Console.WriteLine($"{tab}Round: {game.Round}\tP_Round: {game.GetActorRounds("player")}\tD_Round: {game.GetActorRounds("dealer")}");
                     Console.WriteLine($"{tab}Player: {game.ShowItems("player", out int PL_ItemsC)}({PL_ItemsC})");
                     Console.WriteLine($"{tab}Dealer: {game.ShowItems("dealer",out int DL_ItemsC)}({DL_ItemsC})");
+                    Console.WriteLine($"\tDUsedItems: {string.Join(',',game.GetActorUsedItems("dealer"))}");
                     
                 }
                 
@@ -359,13 +371,22 @@ namespace Buckshot
                     }
                     else
                     {
-                        if (item == "Live")
+                        if (Emoji == true)
                         {
-                            Console.Write("🔴 ");
+
+
+                            if (item == "Live")
+                            {
+                                Console.Write("🔴 ");
+                            }
+                            else
+                            {
+                                Console.Write("🔵 ");
+                            }
                         }
                         else
                         {
-                            Console.Write("🔵 ");
+                            Console.Write($"{item}");
                         }
                     }
                     Thread.Sleep( 500 );
@@ -540,6 +561,7 @@ namespace Buckshot
                                     if(game.GetActorRounds(actor) == 1)
                                     {
                                         Current = !Current;
+                                        game.UsedItemReset();
                                     }
                                     else
                                     {
@@ -579,21 +601,16 @@ namespace Buckshot
                         else if (actor == "dealer")
                         {
                             string ChosedAction = "";
-                            if (Difficulty == "Easy")
+                            game.DealerRound("dealer", out string chosedAction, out string chosenItem);
+                            if (chosenItem != "0" && (chosenItem == "Knife" || chosenItem == "Cigaretta" || chosenItem == "Cuffs" || chosenItem == "Beer"))
                             {
-                                game.DealerRound("dealer", out string chosedAction);
-                                ChosedAction = chosedAction;
+                                if(game.Shells.Count() > 0)
+                                {
+                                    itemView.Show(chosenItem, game.Shells[0]);
+                                }
+                                Displyer("\t\t\t");
                             }
-                            else if(Difficulty == "Medium")
-                            {
-                                game.DealerRoundMedium("dealer",out string chosedAction);
-                                ChosedAction = chosedAction;
-                            }
-                            else
-                            {
-                                game.DealerRoundHard("dealer", out string chosedAction);
-                                ChosedAction = chosedAction;
-                            }
+                            ChosedAction = chosedAction;
                             if (ChosedAction == "MeShoot")
                             {
                                 if (game.Last_D_Shot == "Live")
