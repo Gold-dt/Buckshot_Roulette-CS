@@ -20,13 +20,15 @@ namespace Buckshot
                 while (DateTime.Now < end)
                 {
                     Console.SetCursorPosition(0, 0);
-                    Console.Write("Loading... " + spinner[counter % spinner.Length]);
+                    Console.Write("Finalizing... " + spinner[counter % spinner.Length]);
                     counter++;
                     Thread.Sleep(100); // Frissítés 100 ms-onként
                 }
 
                 Console.SetCursorPosition(0, 0);
-                Console.WriteLine("Loading... Done!    "); // Töröljük a forgó kerék nyomát
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Finalizing... Done!    "); // Töröljük a forgó kerék nyomát
+                Console.ResetColor();
             }
             else
             {

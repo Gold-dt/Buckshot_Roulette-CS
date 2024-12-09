@@ -6,7 +6,7 @@ namespace Buckshot
 {
     class Program
     {
-        public string Name = "Gold";
+        public string Name = "Gold_dt";
 
         public bool Devkit;
         public bool Emoji;
@@ -31,17 +31,21 @@ namespace Buckshot
             Loader loader = new Loader();
             Menu menu = new Menu();
 
-            Setup.Kerdes("Fejlesztői nézetet kérsz? ", ["Igen", "Nem"], ConsoleColor.Cyan);
-            Setup.Kerdes("Konzolod megtudja jeleníteni az emoji-kat: ", ["Igen", "Nem"], ConsoleColor.Cyan);
-            program.Devkit = Setup.Valasz[0] == "Igen" ? true : false;
-             program.Emoji = Setup.Valasz[1] == "Igen" ? true : false;
+            //Setup.Kerdes("Fejlesztői nézetet kérsz? ", ["Igen", "Nem"], ConsoleColor.Cyan);
+            //Setup.Kerdes("Konzolod megtudja jeleníteni az emoji-kat: ", ["Igen", "Nem"], ConsoleColor.Cyan);
+            //program.Devkit = Setup.Valasz[0] == "Igen" ? true : false;
+            // program.Emoji = Setup.Valasz[1] == "Igen" ? true : false;
 
 
-            loader.FullLoader(Random.Shared.Next(2, 8), Random.Shared.Next(2, 4));
+            //loader.FullLoader(Random.Shared.Next(2, 8), Random.Shared.Next(2, 4));
 
-            program.MainGame(game);
             //menu.SetName(out string name);
             //program.Name = name;
+            #region Progress
+            menu.MainMenu();//A menu.cs-t kell folytatni azon belül is a 191.sor és 195 a kettő CW-t
+            #endregion
+            //program.MainGame(game);
+
 
         }
         public void Winner()
