@@ -10,9 +10,13 @@ namespace Buckshot
 
         public bool Devkit = true;
         public bool Emoji = false;
+        public int StarterItemsCount = 3;
 
+        public int MinShells = 3;
+        public int MaxShells = 9;
+        public int MaxRound = 3;
 
-        public int MaxRound => 3;
+        public int StarterHealth = 5;
 
         ItemView itemView = new ItemView();
 
@@ -25,17 +29,19 @@ namespace Buckshot
             MainEngine game = new("Gold", 5);
             BasicLoader Setup = new BasicLoader();
             Loader loader = new Loader();
+            Menu menu = new Menu();
 
-            Setup.Kerdes("Konzolod megtudja jeleníteni az emoji-kat: ", ["Igen", "Nem"], ConsoleColor.Cyan);
-            Setup.Kerdes("Fejlesztői nézetet kérsz? ", ["Igen", "Nem"], ConsoleColor.Cyan);
-            program.Devkit = Setup.Valasz[0] == "Igen" ? true : false;
-            program.Emoji = Setup.Valasz[1] == "Igen" ? true : false;
+            //Setup.Kerdes("Konzolod megtudja jeleníteni az emoji-kat: ", ["Igen", "Nem"], ConsoleColor.Cyan);
+            //Setup.Kerdes("Fejlesztői nézetet kérsz? ", ["Igen", "Nem"], ConsoleColor.Cyan);
+            //program.Devkit = Setup.Valasz[0] == "Igen" ? true : false;
+            //program.Emoji = Setup.Valasz[1] == "Igen" ? true : false;
 
 
-            loader.FullLoader(3, 2);
+            //loader.FullLoader(Random.Shared.Next(2,8), Random.Shared.Next(2,4));
 
-            program.MainGame(game);
-
+            //program.MainGame(game);
+            menu.SetName(out string name);
+            program.Name = name;
 
         }
         public void Winner()

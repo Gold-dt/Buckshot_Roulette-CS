@@ -21,6 +21,10 @@ namespace GameEngine
         public string Last_P_Shot = "";
         public string Last_D_Shot = "";
 
+        public int MinShells = 3;
+        public int MaxShells = 9;
+
+
         public int StarterItemsAmmount => 3;
 
         public int GetActorRounds(string actor)
@@ -100,7 +104,7 @@ namespace GameEngine
             Shells.Clear();
             string[] shelltypes = ["Blank","Live"];
             Random random = new Random();
-            for (int i = 0; i < random.Next(3,9); i++)
+            for (int i = 0; i < random.Next(MinShells,MaxShells); i++)
             {
                 string shell = shelltypes[random.Next(shelltypes.Length)];
                 Shells.Add(shell);
