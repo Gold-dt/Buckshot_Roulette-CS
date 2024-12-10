@@ -181,7 +181,7 @@ namespace Buckshot
                     switch (Diff)
                     {
                         case 0:
-                            if (Valasz[Diff] <= 8)
+                            if (Valasz[Diff] < 8)
                             {
                                 Valasz[Diff]++;
                             };
@@ -193,7 +193,7 @@ namespace Buckshot
                             };
                             continue;
                         case 2:
-                            if (Valasz[Diff] <= 5)
+                            if (Valasz[Diff] <= 9)
                             {
                                 Valasz[Diff]++;
                             };

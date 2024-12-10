@@ -38,14 +38,14 @@ namespace GameEngine
         Items ItemTypes = new();
         private int _lowest;
 
-        //public MainEngine(string name,int starterEnergy)
-        //{
-        //    StarterEnergy = starterEnergy;
-        //    player = new(starterEnergy,name);
-        //    dealer = new(starterEnergy);
-        //    _lowest = starterEnergy;
-        //    PName = name;
-        //}
+        public MainEngine(string name, int starterEnergy)
+        {
+            StarterEnergy = starterEnergy;
+            player = new(starterEnergy, name);
+            dealer = new(starterEnergy);
+            _lowest = starterEnergy;
+            PName = name;
+        }
 
         public MainEngine(string name, int starterEnergy,int items,int minShells,int maxShells,int maxRounds)
         {

@@ -30,24 +30,29 @@ namespace Buckshot
             Loader loader = new Loader();
             Menu menu = new Menu();
 
-            //Setup.Kerdes("Fejlesztői nézetet kérsz? ", ["Igen", "Nem"], ConsoleColor.Cyan);
-            //Setup.Kerdes("Konzolod megtudja jeleníteni az emoji-kat: ", ["Igen", "Nem"], ConsoleColor.Cyan);
-            //program.Devkit = Setup.Valasz[0] == "Igen" ? true : false;
-            //program.Emoji = Setup.Valasz[1] == "Igen" ? true : false;
+            void Loader()
+            {
+                Setup.Kerdes("Fejlesztői nézetet kérsz? ", ["Igen", "Nem"], ConsoleColor.Cyan);
+                Setup.Kerdes("Konzolod megtudja jeleníteni az emoji-kat: ", ["Igen", "Nem"], ConsoleColor.Cyan);
+                program.Devkit = Setup.Valasz[0] == "Igen" ? true : false;
+                program.Emoji = Setup.Valasz[1] == "Igen" ? true : false;
 
 
-            //loader.FullLoader(Random.Shared.Next(2, 8), Random.Shared.Next(2, 4));
+                loader.FullLoader(Random.Shared.Next(2, 8), Random.Shared.Next(2, 4));
+                menu.MainMenu(out int[] ConfigData);
+                menu.SetName(out string name);
+                program.Name = name;
+                MainEngine game = new(program.Name, ConfigData[4], ConfigData[0], ConfigData[1], ConfigData[2], ConfigData[3]);
+                            }
 
             //menu.SetName(out string name);
             //program.Name = name;
-            #region Progress
-            menu.MainMenu(out int[] ConfigData);//A menu.cs-t kell folytatni azon belül is a 191.sor és 195 a kettő CW-t
-            Console.WriteLine(string.Join(',',ConfigData));
-            //MainEngine game = new("Gold", 5);
-            MainEngine game = new(program.Name, ConfigData[4], ConfigData[0], ConfigData[1], ConfigData[2], ConfigData[3]);
-            #endregion
-            Console.WriteLine(game.test);
-            //program.MainGame(game);
+
+            //menu.MainMenu(out int[] ConfigData);
+            //MainEngine game = new(program.Name, ConfigData[4], ConfigData[0], ConfigData[1], ConfigData[2], ConfigData[3]);
+            MainEngine game = new("Gold", 5);
+
+            program.MainGame(game);
 
 
         }
@@ -262,12 +267,12 @@ namespace Buckshot
                 Console.WriteLine("\n");
                 Console.WriteLine($"{tab}╭─────────────────────────────────╮");
                 Console.Write($"{tab}│  ");
-                Console.Write($"{Name}\t\t\t{Name}: ");
-
+                //Console.Write($"{Name}\t\t\t{Name}: ");
+                Console.Write($"\x1b[39m{Name}{"".PadRight(20 - Name.Length, ' ')}{Name}: ");
                 EnergyValid("player");
                 Console.Write($"{game.Energys("player")}");
                 Console.ResetColor();
-                Console.Write("   │\n");
+                Console.Write(" │\n");
                 Console.Write($"{tab}│  ");
                 Console.Write($"Dealer\t\tDealer: ");
                 EnergyValid("dealer");
