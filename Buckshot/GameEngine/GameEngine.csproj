@@ -6,4 +6,13 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+	<PropertyGroup>
+		<Authors>Gold_dt</Authors>
+		<Company>Me nad myself :D | Gold_dt |</Company>
+		<Version>1.0.0</Version>
+		<Description>Feel free to copy or re use this projekt just mention me and read the github readme and the MIT copyright ;)</Description>
+		<Copyright>© 2024 Gold dt. All rights reserved.</Copyright>
+	</PropertyGroup>
+
+
 </Project>
