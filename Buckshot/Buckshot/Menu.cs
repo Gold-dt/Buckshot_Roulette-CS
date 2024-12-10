@@ -137,7 +137,7 @@ namespace Buckshot
             bool exit = true;
             int Diff = 0;
             string[] Szintek = { "StarterItemsCount", "MinShells", "MaxShells", "MaxRound", "StarterHealth" };
-            int[] Valasz = { 0,0,0,0,0 };
+            int[] Valasz = { 3,3,9,5,7 };
             while (exit)
             {
                 string spacing = "\t\t\t";
@@ -169,9 +169,47 @@ namespace Buckshot
                 }
                 else if(gomb.Key == ConsoleKey.LeftArrow)
                 {
-
+                    if (Valasz[Diff]-1 != 0)
+                    {
+                        Valasz[Diff]--;
+                    }
                 }
-
+                else if (gomb.Key == ConsoleKey.RightArrow)
+                {
+                    switch (Diff)
+                    {
+                        case 0:
+                            if (Valasz[Diff] <= 8)
+                            {
+                                Valasz[Diff]++;
+                            };
+                            continue;
+                        case 1:
+                            if (Valasz[Diff] <= 5)
+                            {
+                                Valasz[Diff]++;
+                            };
+                            continue;
+                        case 2:
+                            if (Valasz[Diff] <= 5)
+                            {
+                                Valasz[Diff]++;
+                            };
+                            continue;
+                        case 3:
+                            if (Valasz[Diff] <= 9)
+                            {
+                                Valasz[Diff]++;
+                            };
+                            continue;
+                        case 4:
+                            if (Valasz[Diff] <= 7)
+                            {
+                                Valasz[Diff]++;
+                            };
+                            continue;
+                    }
+                }
             }
 
             void Print(string spaceing)
@@ -188,11 +226,11 @@ namespace Buckshot
                     if (i == Diff)
                     {
 
-                        Console.Write($"\u001b[91m│   \x1b[93m> \x1b[92m{Szintek[i]}:{Valasz[Diff].ToString().PadLeft(3,' ')}\x1b[39m{"".PadRight(24 - Szintek[i].Length, ' ')}\u001b[91m│");
+                        Console.Write($"\u001b[91m│   \x1b[93m> \x1b[92m{Szintek[i]}:{Valasz[i].ToString().PadLeft(21 - Szintek[i].Length, ' ')  }\u001b[91m  │");
                     }
                     else
                     {
-                        Console.Write($"\u001b[91m│   \x1b[39m{Szintek[i]}:{Valasz[Diff].ToString().PadLeft(3, ' ')}{"".PadRight(26 - Szintek[i].Length, ' ')}\u001b[91m│");
+                        Console.Write($"\u001b[91m│   \x1b[39m{Szintek[i]}:{Valasz[i].ToString().PadLeft(23 - Szintek[i].Length, ' ')}\u001b[91m  │");
                     }
                     Console.WriteLine();
                     Console.ResetColor();

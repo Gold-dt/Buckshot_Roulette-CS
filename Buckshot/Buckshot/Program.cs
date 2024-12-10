@@ -34,7 +34,7 @@ namespace Buckshot
             //Setup.Kerdes("Fejlesztői nézetet kérsz? ", ["Igen", "Nem"], ConsoleColor.Cyan);
             //Setup.Kerdes("Konzolod megtudja jeleníteni az emoji-kat: ", ["Igen", "Nem"], ConsoleColor.Cyan);
             //program.Devkit = Setup.Valasz[0] == "Igen" ? true : false;
-            // program.Emoji = Setup.Valasz[1] == "Igen" ? true : false;
+            //program.Emoji = Setup.Valasz[1] == "Igen" ? true : false;
 
 
             //loader.FullLoader(Random.Shared.Next(2, 8), Random.Shared.Next(2, 4));
