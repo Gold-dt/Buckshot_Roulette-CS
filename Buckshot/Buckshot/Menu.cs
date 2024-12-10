@@ -94,7 +94,8 @@ namespace Buckshot
             {
                 ContractPaper(NameChar);
                 ConsoleKeyInfo gomb = Console.ReadKey(true);
-                if(char.IsLetter(gomb.KeyChar))
+
+                if (char.IsLetter(gomb.KeyChar) && gomb.KeyChar is >= 'A' and <= 'Z' or >= 'a' and <= 'z')
                 {
                     if (NameChar.Count() + 1 != 7)
                     {
@@ -133,7 +134,7 @@ namespace Buckshot
 
         }
 
-        public int[] Valasz = { 3, 3, 9, 5, 7 };
+        public int[] Valasz = { 3, 3, 9, 5, 3 };
         void Settings()
         {
             bool exit = true;
@@ -173,27 +174,35 @@ namespace Buckshot
                 {
                     if (Valasz[Diff]-1 != 0)
                     {
-                        Valasz[Diff]--;
+                        if (Diff == 2 && Valasz[Diff]-1 > Valasz[1]) //"MaxShells"
+                        {
+                            Valasz[Diff]--;
+                        }
+                        else if(Diff != 2)
+                        {
+                            Valasz[Diff]--;
+                        }
                     }
                 }
                 else if (gomb.Key == ConsoleKey.RightArrow)
                 {
                     switch (Diff)
                     {
+                        //"StarterItemsCount", "MinShells", "MaxShells", "MaxRound", "StarterHealth"
                         case 0:
-                            if (Valasz[Diff] < 8)
+                            if (Valasz[Diff] < 8) //"StarterItemsCount"
                             {
                                 Valasz[Diff]++;
                             };
                             continue;
                         case 1:
-                            if (Valasz[Diff] <= 5)
+                            if (Valasz[Diff] <= 5 && Valasz[Diff]+1 < Valasz[2]) //"MinShells"
                             {
                                 Valasz[Diff]++;
                             };
                             continue;
                         case 2:
-                            if (Valasz[Diff] <= 9)
+                            if (Valasz[Diff] <= 9 ) //"MaxShells"
                             {
                                 Valasz[Diff]++;
                             };

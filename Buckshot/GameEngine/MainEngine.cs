@@ -12,7 +12,9 @@ namespace GameEngine
         public List<string> Shells = new List<string>();
 
         public int StarterEnergy { get; init; }
-        public int Rounds = 3;
+        //public int Rounds = 3;
+        public int Rounds { get; init; }
+
         public int Round { get; set; } = 1;
 
         public int NextDamage = 1;

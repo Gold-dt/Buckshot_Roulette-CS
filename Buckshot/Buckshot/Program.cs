@@ -41,6 +41,7 @@ namespace Buckshot
             menu.MainMenu(out int[] ConfigData);
             menu.SetName(out string name);
             program.Name = name;
+            program.MaxRound = ConfigData[3];
             MainEngine game = new(program.Name, ConfigData[4], ConfigData[0], ConfigData[1], ConfigData[2], ConfigData[3]);
 
             
