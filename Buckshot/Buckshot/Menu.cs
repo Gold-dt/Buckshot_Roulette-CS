@@ -8,6 +8,7 @@ namespace Buckshot
 {
     internal class Menu
     {
+
         Loader GetLoader = new Loader();   
         public void SetName(out string name)
         {
@@ -132,12 +133,13 @@ namespace Buckshot
 
         }
 
+        public int[] Valasz = { 3, 3, 9, 5, 7 };
         void Settings()
         {
             bool exit = true;
             int Diff = 0;
             string[] Szintek = { "StarterItemsCount", "MinShells", "MaxShells", "MaxRound", "StarterHealth" };
-            int[] Valasz = { 3,3,9,5,7 };
+            
             while (exit)
             {
                 string spacing = "\t\t\t";
@@ -212,6 +214,7 @@ namespace Buckshot
                 }
             }
 
+
             void Print(string spaceing)
             {
                 Console.CursorVisible = false;
@@ -240,11 +243,11 @@ namespace Buckshot
                 Console.ResetColor();
             }
         }
-        public void MainMenu()
+        public void MainMenu(out int[] ConfigData)
         {
-            
+            ConfigData = Valasz;
             string[] Szintek = { "Settings", "Indítás" };
-            Action[] funkciok = { Settings, Inditas };
+            Action[] funkciok = { Settings , Inditas };
 
             #region menu
 
@@ -263,7 +266,10 @@ namespace Buckshot
                 ConsoleKeyInfo gomb = Console.ReadKey();
                 if (gomb.Key == ConsoleKey.Escape || gomb.Key == ConsoleKey.Enter)
                 {
-                    exit = false;
+                    if (Szintek[Diff] == "Indítás")
+                    {
+                        exit = false;
+                    }
                     try
                     {
                         funkciok[Diff].Invoke();
@@ -273,6 +279,7 @@ namespace Buckshot
                         Console.WriteLine($"Hiányos funkció lista: {e.Message}");
                     }
                 }
+                
                 else if (gomb.Key == ConsoleKey.S || gomb.Key == ConsoleKey.DownArrow)
                 {
                     if (Diff + 1 < Szintek.Length)
@@ -344,6 +351,7 @@ namespace Buckshot
             GetLoader.LoadingAnimation(Random.Shared.Next(2,5));
             Thread.Sleep(500);
             Console.Clear();
+            
         }
 
 

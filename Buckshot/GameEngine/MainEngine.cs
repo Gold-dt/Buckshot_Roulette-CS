@@ -12,7 +12,7 @@ namespace GameEngine
         public List<string> Shells = new List<string>();
 
         public int StarterEnergy { get; init; }
-        public int Rounds => 3;
+        public int Rounds = 3;
         public int Round { get; set; } = 1;
 
         public int NextDamage = 1;
@@ -38,15 +38,27 @@ namespace GameEngine
         Items ItemTypes = new();
         private int _lowest;
 
-        public MainEngine(string name,int starterEnergy)
+        //public MainEngine(string name,int starterEnergy)
+        //{
+        //    StarterEnergy = starterEnergy;
+        //    player = new(starterEnergy,name);
+        //    dealer = new(starterEnergy);
+        //    _lowest = starterEnergy;
+        //    PName = name;
+        //}
+
+        public MainEngine(string name, int starterEnergy,int items,int minShells,int maxShells,int maxRounds)
         {
             StarterEnergy = starterEnergy;
-            player = new(starterEnergy,name);
+            player = new(starterEnergy, name);
             dealer = new(starterEnergy);
             _lowest = starterEnergy;
             PName = name;
+            MinShells = minShells;
+            MaxShells = maxShells;
+            Rounds = maxRounds;
         }
-
+        public string test => Rounds.ToString();
         public void NextRound()
         {
             player = new(StarterEnergy, PName);

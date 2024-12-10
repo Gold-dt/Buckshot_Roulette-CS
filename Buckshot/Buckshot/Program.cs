@@ -26,7 +26,6 @@ namespace Buckshot
             Console.CursorVisible = false;
             Program program = new Program();
             ItemView itemView = new ItemView();
-            MainEngine game = new("Gold", 5);
             BasicLoader Setup = new BasicLoader();
             Loader loader = new Loader();
             Menu menu = new Menu();
@@ -42,8 +41,12 @@ namespace Buckshot
             //menu.SetName(out string name);
             //program.Name = name;
             #region Progress
-            menu.MainMenu();//A menu.cs-t kell folytatni azon belül is a 191.sor és 195 a kettő CW-t
+            menu.MainMenu(out int[] ConfigData);//A menu.cs-t kell folytatni azon belül is a 191.sor és 195 a kettő CW-t
+            Console.WriteLine(string.Join(',',ConfigData));
+            //MainEngine game = new("Gold", 5);
+            MainEngine game = new(program.Name, ConfigData[4], ConfigData[0], ConfigData[1], ConfigData[2], ConfigData[3]);
             #endregion
+            Console.WriteLine(game.test);
             //program.MainGame(game);
 
 
