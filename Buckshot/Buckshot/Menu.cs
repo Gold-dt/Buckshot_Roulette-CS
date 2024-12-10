@@ -347,7 +347,7 @@ namespace Buckshot
         void Inditas()
         {
             Console.Clear();
-            SetName(out string name);
+            //SetName(out string name);
             GetLoader.LoadingAnimation(Random.Shared.Next(2,5));
             Thread.Sleep(500);
             Console.Clear();

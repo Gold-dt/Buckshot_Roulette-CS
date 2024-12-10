@@ -5,7 +5,7 @@ using System;
 namespace Buckshot
 {
     class Program
-    {
+    {                       //1234567
         public string Name = "Gold_dt";
 
         public bool Devkit;
@@ -30,28 +30,20 @@ namespace Buckshot
             Loader loader = new Loader();
             Menu menu = new Menu();
 
-            void Loader()
-            {
-                Setup.Kerdes("Fejlesztői nézetet kérsz? ", ["Igen", "Nem"], ConsoleColor.Cyan);
-                Setup.Kerdes("Konzolod megtudja jeleníteni az emoji-kat: ", ["Igen", "Nem"], ConsoleColor.Cyan);
-                program.Devkit = Setup.Valasz[0] == "Igen" ? true : false;
-                program.Emoji = Setup.Valasz[1] == "Igen" ? true : false;
+            
+            Setup.Kerdes("Fejlesztői nézetet kérsz? ", ["Igen", "Nem"], ConsoleColor.Cyan);
+            Setup.Kerdes("Konzolod megtudja jeleníteni az emoji-kat: ", ["Igen", "Nem"], ConsoleColor.Cyan);
+            program.Devkit = Setup.Valasz[0] == "Igen" ? true : false;
+            program.Emoji = Setup.Valasz[1] == "Igen" ? true : false;
 
 
-                loader.FullLoader(Random.Shared.Next(2, 8), Random.Shared.Next(2, 4));
-                menu.MainMenu(out int[] ConfigData);
-                menu.SetName(out string name);
-                program.Name = name;
-                MainEngine game = new(program.Name, ConfigData[4], ConfigData[0], ConfigData[1], ConfigData[2], ConfigData[3]);
-                            }
+            loader.FullLoader(Random.Shared.Next(2, 8), Random.Shared.Next(2, 4));
+            menu.MainMenu(out int[] ConfigData);
+            menu.SetName(out string name);
+            program.Name = name;
+            MainEngine game = new(program.Name, ConfigData[4], ConfigData[0], ConfigData[1], ConfigData[2], ConfigData[3]);
 
-            //menu.SetName(out string name);
-            //program.Name = name;
-
-            //menu.MainMenu(out int[] ConfigData);
-            //MainEngine game = new(program.Name, ConfigData[4], ConfigData[0], ConfigData[1], ConfigData[2], ConfigData[3]);
-            MainEngine game = new("Gold", 5);
-
+            
             program.MainGame(game);
 
 
@@ -268,7 +260,8 @@ namespace Buckshot
                 Console.WriteLine($"{tab}╭─────────────────────────────────╮");
                 Console.Write($"{tab}│  ");
                 //Console.Write($"{Name}\t\t\t{Name}: ");
-                Console.Write($"\x1b[39m{Name}{"".PadRight(20 - Name.Length, ' ')}{Name}: ");
+                Console.Write($"{Name.PadRight(29-Name.Length-2,' ')}{Name}: ");
+
                 EnergyValid("player");
                 Console.Write($"{game.Energys("player")}");
                 Console.ResetColor();
