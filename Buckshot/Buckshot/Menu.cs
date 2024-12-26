@@ -12,12 +12,12 @@ namespace Buckshot
         Loader GetLoader = new Loader();   
         public void SetName(out string name)
         {
-
+            string tab = "\t\t\t\t\t";
             static void AnimateText(string text)
             {
                 Random random = new Random();
                 string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-                Console.Write("\t\t\t\t");
+                Console.Write($"\t\t\t\t\t\t");//Szöveg tabulátor
                 foreach (char targetChar in text)
                 {
                     if (targetChar == ' ') // Ha szóköz, ne animáljunk
@@ -36,7 +36,7 @@ namespace Buckshot
                     }
 
                     Console.Write(targetChar); // Megjeleníti a célt
-                    Thread.Sleep(150); // Rövid szünet a következő karakter előtt
+                    Thread.Sleep(70); // Rövid szünet a következő karakter előtt
                 }
                 Console.WriteLine(); // Új sor a végén
             }
@@ -45,7 +45,7 @@ namespace Buckshot
             {
 
                 Console.SetCursorPosition(0, 1);
-                string tab = "\t\t\t";
+                
                 string text = $"{tab}--------------------------------" +
                                "\n| GENERAL RELEASE OF LIABILITY |" +
                                "\n|                              |" +
@@ -111,7 +111,18 @@ namespace Buckshot
                 }
                 else if(gomb.Key == ConsoleKey.Enter && NameChar.Count() >= 2)
                 {
-                    run = false;
+                    if(NameChar != "GOD")
+                    {
+                        run = false;
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine($"\n{tab} You think you can be GOD?");
+                        Thread.Sleep(1000);
+                        Console.WriteLine($"{tab}\t No you can't");
+                        Console.ResetColor();
+                    }
                 }
             }
             name = NameChar;
@@ -252,14 +263,15 @@ namespace Buckshot
                 Console.ResetColor();
             }
         }
-        public void MainMenu(out int[] ConfigData)
+        
+        public void MainMenu(out int[] ConfigData,out bool starter)
         {
             ConfigData = Valasz;
-            string[] Szintek = { "Settings", "Indítás" };
+            string[] Szintek = { "Settings", "Indítás","Exit" };
             Action[] funkciok = { Settings , Inditas };
 
             #region menu
-
+            starter = true;
             bool exit = true;
             int Diff = 0;
             while (exit)
@@ -273,22 +285,37 @@ namespace Buckshot
 
                 Print(spacing);
                 ConsoleKeyInfo gomb = Console.ReadKey();
-                if (gomb.Key == ConsoleKey.Escape || gomb.Key == ConsoleKey.Enter)
+                if (gomb.Key == ConsoleKey.Enter)
                 {
                     if (Szintek[Diff] == "Indítás")
                     {
                         exit = false;
-                    }
-                    try
-                    {
                         funkciok[Diff].Invoke();
                     }
-                    catch (Exception e)
+
+                    else if (Szintek[Diff] == "Exit")
                     {
-                        Console.WriteLine($"Hiányos funkció lista: {e.Message}");
+                        exit = false;
+                        starter = false;
                     }
+                    else
+                    {
+                        try
+                        {
+                            funkciok[Diff].Invoke();
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine($"Hiányos funkció lista: {e.Message}");
+                        }
+                    }
+                    
                 }
-                
+                else if(gomb.Key == ConsoleKey.Escape)
+                {
+                    exit = false;
+                    starter = false;
+                }
                 else if (gomb.Key == ConsoleKey.S || gomb.Key == ConsoleKey.DownArrow)
                 {
                     if (Diff + 1 < Szintek.Length)

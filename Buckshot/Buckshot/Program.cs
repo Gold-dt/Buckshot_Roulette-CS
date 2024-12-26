@@ -30,22 +30,46 @@ namespace Buckshot
             Loader loader = new Loader();
             Menu menu = new Menu();
 
+            if(args.Count() == 0)
+            {
+                Setup.Kerdes("Fejlesztői nézetet kérsz? ", ["Igen", "Nem"], ConsoleColor.Cyan);
+                Setup.Kerdes("Konzolod megtudja jeleníteni az emoji-kat: ", ["Igen", "Nem"], ConsoleColor.Cyan);
+                program.Devkit = Setup.Valasz[0] == "Igen" ? true : false;
+                program.Emoji = Setup.Valasz[1] == "Igen" ? true : false;
+
+
+                loader.FullLoader(Random.Shared.Next(2, 8), Random.Shared.Next(2, 4));
+                menu.MainMenu(out int[] ConfigData, out bool starter);
+                if (starter == true)
+                {
+
+
+                    menu.SetName(out string name);
+                    program.Name = name;
+                    program.MaxRound = ConfigData[3];
+                    MainEngine game = new(program.Name, ConfigData[4], ConfigData[0], ConfigData[1], ConfigData[2], ConfigData[3]);
+
+
+                    program.MainGame(game);
+                }
+            }
+            else
+            {
+                menu.MainMenu(out int[] ConfigData, out bool starter);
+                if (starter == true)
+                {
+
+
+                    menu.SetName(out string name);
+                    program.Name = name;
+                    program.MaxRound = ConfigData[3];
+                    MainEngine game = new(program.Name, ConfigData[4], ConfigData[0], ConfigData[1], ConfigData[2], ConfigData[3]);
+
+
+                    program.MainGame(game);
+                }
+            }
             
-            Setup.Kerdes("Fejlesztői nézetet kérsz? ", ["Igen", "Nem"], ConsoleColor.Cyan);
-            Setup.Kerdes("Konzolod megtudja jeleníteni az emoji-kat: ", ["Igen", "Nem"], ConsoleColor.Cyan);
-            program.Devkit = Setup.Valasz[0] == "Igen" ? true : false;
-            program.Emoji = Setup.Valasz[1] == "Igen" ? true : false;
-
-
-            loader.FullLoader(Random.Shared.Next(2, 8), Random.Shared.Next(2, 4));
-            menu.MainMenu(out int[] ConfigData);
-            menu.SetName(out string name);
-            program.Name = name;
-            program.MaxRound = ConfigData[3];
-            MainEngine game = new(program.Name, ConfigData[4], ConfigData[0], ConfigData[1], ConfigData[2], ConfigData[3]);
-
-            
-            program.MainGame(game);
 
 
         }
@@ -592,6 +616,7 @@ namespace Buckshot
                                         if (game.GetActorRounds(actor) == 1)
                                         {
                                             Current = !Current;
+                                            game.UsedItemReset();
                                         }
                                         else
                                         {
@@ -661,11 +686,15 @@ namespace Buckshot
                     Losed();
                     //break;
                     PlayerIsAlive = false;
+                    Console.Clear();
+                    Program.Main(["Reload"]);
                 }
                 else if(Lose() == "dealer" && game.Round == MaxRound)
                 {
                     Winner();
-                    game.NextRound();
+                    //game.NextRound();
+                    Console.Clear();
+                    Program.Main(["Reload"]);
                 }
                 else
                 {
