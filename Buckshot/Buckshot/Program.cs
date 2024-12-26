@@ -28,30 +28,38 @@ namespace Buckshot
             ItemView itemView = new ItemView();
             BasicLoader Setup = new BasicLoader();
             Loader loader = new Loader();
+            AuthorMark authorMarker = new AuthorMark();
             Menu menu = new Menu();
 
             if(args.Count() == 0)
             {
-                Setup.Kerdes("Fejlesztői nézetet kérsz? ", ["Igen", "Nem"], ConsoleColor.Cyan);
-                Setup.Kerdes("Konzolod megtudja jeleníteni az emoji-kat: ", ["Igen", "Nem"], ConsoleColor.Cyan);
-                program.Devkit = Setup.Valasz[0] == "Igen" ? true : false;
-                program.Emoji = Setup.Valasz[1] == "Igen" ? true : false;
-
-
-                loader.FullLoader(Random.Shared.Next(2, 8), Random.Shared.Next(2, 4));
-                menu.MainMenu(out int[] ConfigData, out bool starter);
-                if (starter == true)
+                void Game()
                 {
 
+                
+                    Setup.Kerdes("Fejlesztői nézetet kérsz? ", ["Igen", "Nem"], ConsoleColor.Cyan);
+                    Setup.Kerdes("Konzolod megtudja jeleníteni az emoji-kat: ", ["Igen", "Nem"], ConsoleColor.Cyan);
+                    program.Devkit = Setup.Valasz[0] == "Igen" ? true : false;
+                    program.Emoji = Setup.Valasz[1] == "Igen" ? true : false;
 
-                    menu.SetName(out string name);
-                    program.Name = name;
-                    program.MaxRound = ConfigData[3];
-                    MainEngine game = new(program.Name, ConfigData[4], ConfigData[0], ConfigData[1], ConfigData[2], ConfigData[3]);
+
+                    loader.FullLoader(Random.Shared.Next(2, 8), Random.Shared.Next(2, 4));
+                    menu.MainMenu(out int[] ConfigData, out bool starter);
+                    if (starter == true)
+                    {
 
 
-                    program.MainGame(game);
+                        menu.SetName(out string name);
+                        program.Name = name;
+                        program.MaxRound = ConfigData[3];
+                        MainEngine game = new(program.Name, ConfigData[4], ConfigData[0], ConfigData[1], ConfigData[2], ConfigData[3]);
+
+
+                        program.MainGame(game);
+                    }
                 }
+                //authorMarker.ProjectINFO();//authormarkot kell folytatni egy kártyát kell elképzelni
+                Game();
             }
             else
             {

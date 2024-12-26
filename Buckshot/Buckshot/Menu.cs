@@ -10,6 +10,7 @@ namespace Buckshot
     {
 
         Loader GetLoader = new Loader();   
+        AuthorMark AuthorMark = new AuthorMark();
         public void SetName(out string name)
         {
             string tab = "\t\t\t\t\t";
@@ -267,8 +268,8 @@ namespace Buckshot
         public void MainMenu(out int[] ConfigData,out bool starter)
         {
             ConfigData = Valasz;
-            string[] Szintek = { "Settings", "Indítás","Exit" };
-            Action[] funkciok = { Settings , Inditas };
+            string[] Szintek = { "Settings","Made by", "Indítás","Exit" };
+            Action[] funkciok = { Settings ,AuthorMark.ProjectINFO, Inditas };
 
             #region menu
             starter = true;
