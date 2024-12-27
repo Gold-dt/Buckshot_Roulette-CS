@@ -214,13 +214,13 @@ namespace Buckshot
                             };
                             continue;
                         case 2:
-                            if (Valasz[Diff] <= 9 ) //"MaxShells"
+                            if (Valasz[Diff] < 9 ) //"MaxShells"
                             {
                                 Valasz[Diff]++;
                             };
                             continue;
                         case 3:
-                            if (Valasz[Diff] <= 9)
+                            if (Valasz[Diff] < 9)
                             {
                                 Valasz[Diff]++;
                             };
@@ -268,7 +268,7 @@ namespace Buckshot
         public void MainMenu(out int[] ConfigData,out bool starter)
         {
             ConfigData = Valasz;
-            string[] Szintek = { "Settings","Made by", "Indítás","Exit" };
+            string[] Szintek = { "Settings","Developer", "Indítás","Exit" };
             Action[] funkciok = { Settings ,AuthorMark.ProjectINFO, Inditas };
 
             #region menu
@@ -298,6 +298,7 @@ namespace Buckshot
                     {
                         exit = false;
                         starter = false;
+                        Console.Clear();
                     }
                     else
                     {
