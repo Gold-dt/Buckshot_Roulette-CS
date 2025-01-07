@@ -47,6 +47,7 @@ Welcome to the BuckShot Project made by **Gold_dt**! Built with C#, .NET 8.0, an
 
 ### Tech Stack <a name="tech-stack"></a>
 <img src="https://forthebadge.com/images/badges/built-with-love.svg" width="110" alt="Build with" >
+
 > *Just in case you didnt figured it out*
 
 <details>
