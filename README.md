@@ -3,7 +3,7 @@
 #  *Still work in progress... !*
 <div align="center">
   
-  <img src="Buckshot/assets/logo.png" alt="logo" width="140"  height="auto" />
+  <img src="Buckshot/assets/logo.png" alt="logo" width="300"  height="auto" />
   <br/>
 
   <h3><b>Buckshot - Remake</b></h3>
