@@ -5,11 +5,11 @@
   
   <img src="Buckshot/assets/logo.png" alt="logo" width="140"  height="auto" />
   <br/>
-<img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif"><br>
+
   <h3><b>Buckshot - Remake</b></h3>
 
 </div>
-
+<img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif"><br>
 <!-- TABLE OF CONTENTS -->
 
 # 📗 Table of Contents
