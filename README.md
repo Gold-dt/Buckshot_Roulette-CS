@@ -211,6 +211,7 @@ Example:
 > ![#c5f015](https://placehold.co/15x15/c5f015/c5f015.png) `Thanks for reading this`
 
 If you like this project then give it a star
+<br><br>
 <img src="https://user-images.githubusercontent.com/74038190/212284158-e840e285-664b-44d7-b79b-e264b5e54825.gif"><br>
 
 
