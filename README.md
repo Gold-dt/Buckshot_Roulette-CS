@@ -200,7 +200,7 @@ Example:
 
 > The feature`s if the project become popular
 
-- [ New Items ] **[new_feature_1]**
+- [ 1 ] **New items**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
