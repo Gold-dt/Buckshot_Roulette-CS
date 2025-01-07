@@ -179,7 +179,7 @@ Example:
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- AUTHORS -->
+<!-- AUTHOR -->
 
 ## 👥 Author <a name="authors"></a>
 
@@ -230,7 +230,7 @@ So yeah thats all the where i got all the ideas
 
 ## ❓ FAQ  <a name="faq"></a>
 
-> Add at least 2 questions new developers would ask when they decide to use your project.
+> If any question is frequently asked, it will be marked.
 
 - **[None]**
 
