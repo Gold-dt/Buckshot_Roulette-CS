@@ -200,7 +200,7 @@ Example:
 
 > The feature`s if the project become popular
 
-- [ (https://placehold.co/15x15/c5f015/c5f015.png)  ] **New items**
+-(https://placehold.co/15x15/c5f015/c5f015.png)   **New items**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
