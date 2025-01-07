@@ -78,9 +78,9 @@ Welcome to the BuckShot Project made by **Gold_dt**! Built with C#, .NET 8.0, an
 > Some thing that good to know.
 
 - **Modular**
-- **${\color{green}C\color{lightgreen}o\color{cyan}l\color{lightblue}o\color{orange}r\color{magnet}f\color{red}u\color{yellow}l}$**
+- **Colorfull**
 - **Accessible**
-- **${\color{cyan}Modern}$**
+- **Modern**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
