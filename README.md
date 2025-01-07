@@ -43,10 +43,10 @@
 Welcome to the BuckShot Project made by **Gold_dt**! Built with C#, .NET 8.0, and uses modern features and tools. The main focus is on efficiency, creativity and training. Feel free to explore and customize it according to the terms given in the github MIT license and other files!Copyright:  © 2024 Gold_dt. All rights reserved.
 
 
-## 🛠    <img src="https://forthebadge.com/images/badges/built-with-love.svg" width="110" alt="Build with" >
+## 🛠 Built With
 
 ### Tech Stack <a name="tech-stack"></a>
-
+<img src="https://forthebadge.com/images/badges/built-with-love.svg" width="110" alt="Build with" >
 > *Just in case you didnt figured it out*
 
 <details>
