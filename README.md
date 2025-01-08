@@ -89,7 +89,7 @@ Welcome to the BuckShot Project made by **Gold_dt**! Built with C#, .NET 8.0, an
 
 ## 🚀 Live presentation <a name="live-demo"></a>
 
-> Add a link to your deployed project.
+> Here's some picture about the game
 
 - Dev Card
 <img src="https://github.com/Gold-dt/Buckshot_Roulette-CS/blob/main/Buckshot/assets/DevcardGif.gif" width="800" />
