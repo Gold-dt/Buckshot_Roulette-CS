@@ -1,6 +1,4 @@
 <a name="readme-top"></a>
-
-## ⚠️ Made by a hungaryan and only supports that language ⚠️
 <div align="center">
   
   <img src="Buckshot/assets/logo.png" alt="logo" width="300"  height="auto" />
@@ -176,9 +174,9 @@ So yeah thats all the where i got all the ideas
 
 > If any question is frequently asked, it will be marked.
 
-- **[Is there a translation?]**
+- **[Any]**
 
-  - [Answer: No. Only the Hungaryan. If there is a need, it can be realized ] <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Flag_of_Hungary.svg/320px-Flag_of_Hungary.svg.png" alt="Hungary Flag" width="30px"/>
+  - [Answer: No]
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
