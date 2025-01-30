@@ -90,7 +90,12 @@ Welcome to the BuckShot Project made by **Gold_dt**! Built with C#, .NET 8.0, an
 
 - Dev Card
 <img src="https://github.com/Gold-dt/Buckshot_Roulette-CS/blob/main/Buckshot/assets/DevcardGif.gif" width="800" />
+- Game Menu
+  
+<img src="https://github.com/Gold-dt/Buckshot_Roulette-CS/blob/main/Buckshot/assets/GameMenu.gif" width="800" />
+- Game Run
 
+<img src="https://github.com/Gold-dt/Buckshot_Roulette-CS/blob/main/Buckshot/assets/GameRun.gif" width="800" />
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
