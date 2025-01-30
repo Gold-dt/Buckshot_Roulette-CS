@@ -106,33 +106,16 @@ To get a local copy up and running, follow these steps.
 
 ### Setup
 
-Clone this repository to your desired folder:
-
-<!--
-Example commands:
-
+Clone this repository to your desired folder by tag: 
+[Buckshot-Console:Remake Version 1.0.0](https://github.com/Gold-dt/Buckshot_Roulette-CS/releases/tag/Buckshot-Remake)
 ```sh
   cd my-folder
   git clone git@github.com:myaccount/my-project.git
 ```
---->
-
-### Install
-
-Install this project with:
-
-<!--
-Example command:
-
-```sh
-  cd my-project
-  gem install
-```
---->
 
 ### Usage
 
-To run the project, execute the following command:
+To run the project, execute the program.cs or the `Buckshot.exe`:
 
 <!--
 Example command:
@@ -141,31 +124,6 @@ Example command:
   rails server
 ```
 --->
-
-### Run tests
-
-To run tests, run the following command:
-
-<!--
-Example command:
-
-```sh
-  bin/rails test test/models/article_test.rb
-```
---->
-
-### Deployment
-
-You can deploy this project using:
-
-<!--
-Example:
-
-```sh
-
-```
- -->
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- AUTHOR -->
