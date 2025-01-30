@@ -183,7 +183,7 @@ So yeah thats all the where i got all the ideas
 
 - **[Is there a translation?]**
 
-  - [Answer: No. Only the Hungaryan ] <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Flag_of_Hungary.svg/320px-Flag_of_Hungary.svg.png" alt="Hungary Flag" width="30px"/>
+  - [Answer: No. Only the Hungaryan. If there is a need, it can be realized ] <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Flag_of_Hungary.svg/320px-Flag_of_Hungary.svg.png" alt="Hungary Flag" width="30px"/>
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
