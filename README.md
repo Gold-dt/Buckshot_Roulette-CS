@@ -1,12 +1,13 @@
 <a name="readme-top"></a>
 
-#  *Still work in progress... !*
+## Made by a hungaryan and only supports that language 
 <div align="center">
   
   <img src="Buckshot/assets/logo.png" alt="logo" width="300"  height="auto" />
   <br/>
 
-  <h3><b>Buckshot - Remake</b></h3>
+  <h3><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Flag_of_Hungary.svg/320px-Flag_of_Hungary.svg.png" alt="Hungary Flag" width="35">
+<b>Buckshot - Remake</b><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Flag_of_Hungary.svg/320px-Flag_of_Hungary.svg.png" alt="Hungary Flag" width="35"></h3>
 
 </div>
 <img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif"><br>
@@ -110,7 +111,7 @@ Clone this repository to your desired folder by tag:
 [Buckshot-Console:Remake Version 1.0.0](https://github.com/Gold-dt/Buckshot_Roulette-CS/releases/tag/Buckshot-Remake)
 ```sh
   cd my-folder
-  git clone git@github.com:myaccount/my-project.git
+  git clone https://github.com/Gold-dt/Buckshot_Roulette-CS.git
 ```
 
 ### Usage
@@ -180,9 +181,10 @@ So yeah thats all the where i got all the ideas
 
 > If any question is frequently asked, it will be marked.
 
-- **[None]**
+- **[Is there a translation?]**
 
-  - [Answer: None]
+  - [Answer: No. Only the Hungaryan ] <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Flag_of_Hungary.svg/320px-Flag_of_Hungary.svg.png" alt="Hungary Flag" width="30px"/>
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
