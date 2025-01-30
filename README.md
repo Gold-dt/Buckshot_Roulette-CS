@@ -1,6 +1,6 @@
 <a name="readme-top"></a>
 
-## Made by a hungaryan and only supports that language 
+## ⚠️ Made by a hungaryan and only supports that language ⚠️
 <div align="center">
   
   <img src="Buckshot/assets/logo.png" alt="logo" width="300"  height="auto" />
