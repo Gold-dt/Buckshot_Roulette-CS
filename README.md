@@ -104,18 +104,6 @@ Welcome to the BuckShot Project made by **Gold_dt**! Built with C#, .NET 8.0, an
 
 To get a local copy up and running, follow these steps.
 
-### Prerequisites
-
-In order to run this project you need:
-
-<!--
-Example command:
-
-```sh
- gem install rails
-```
- -->
-
 ### Setup
 
 Clone this repository to your desired folder:
