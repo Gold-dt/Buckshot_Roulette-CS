@@ -96,10 +96,6 @@ Welcome to the BuckShot Project made by **Gold_dt**! Built with C#, .NET 8.0, an
 - Game Run
 
 <img src="https://github.com/Gold-dt/Buckshot_Roulette-CS/blob/main/Buckshot/assets/GameRun.gif" width="800" />
-- Win Demo
-  
-<img src="https://github.com/Gold-dt/Buckshot_Roulette-CS/blob/main/Buckshot/assets/WinDemo.gif" width="800" />
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
