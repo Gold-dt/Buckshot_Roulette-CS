@@ -101,9 +101,10 @@ Welcome to the BuckShot Project made by **Gold_dt**! Built with C#, .NET 8.0, an
 
 ## 💻 Getting Started <a name="getting-started"></a>
 
-> Describe how a new developer could make use of your project.
-
+> Thats a quick info for modifications and run
 To get a local copy up and running, follow these steps.
+## Dependency
+> NONE
 
 ### Setup
 
@@ -116,15 +117,8 @@ Clone this repository to your desired folder by tag:
 
 ### Usage
 
-To run the project, execute the program.cs or the `Buckshot.exe`:
+To run the project, execute from the source program.cs or the [`Buckshot.exe`](https://github.com/Gold-dt/Buckshot_Roulette-CS/releases/tag/Buckshot-Remake):
 
-<!--
-Example command:
-
-```sh
-  rails server
-```
---->
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- AUTHOR -->
