@@ -8,7 +8,7 @@
 
   <h3><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Flag_of_Hungary.svg/320px-Flag_of_Hungary.svg.png" alt="Hungary Flag" width="35">
 <b>Buckshot - Remake</b><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Flag_of_Hungary.svg/320px-Flag_of_Hungary.svg.png" alt="Hungary Flag" width="35"></h3>
-
+<b>❗Thats a ConsoleApp❗</b>
 </div>
 <img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif"><br>
 <!-- TABLE OF CONTENTS -->
